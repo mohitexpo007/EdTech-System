@@ -1,0 +1,41 @@
+[33mcommit d6922dc87f23dd95320ff1fad035db23cbf0f452[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Mohit <arceus93007@gmail.com>
+Commit: Mohit <arceus93007@gmail.com>
+
+    created the OTP model and tags model
+
+[33mcommit e0df7b503d27d23dc03adc3476536ffb635c2912[m
+Author: Mohit <arceus93007@gmail.com>
+Commit: Mohit <arceus93007@gmail.com>
+
+    created the Course model
+
+[33mcommit bbdf27348100a7fcd987634a632b78c5fa737b93[m
+Author: Mohit <arceus93007@gmail.com>
+Commit: Mohit <arceus93007@gmail.com>
+
+    created the Section model
+
+[33mcommit a3ca5d79f20cbc65d98815a2f0f96b11ff5c092d[m
+Author: Mohit <arceus93007@gmail.com>
+Commit: Mohit <arceus93007@gmail.com>
+
+    created the profile and courseprogress models
+
+[33mcommit 9021d3be7a71458dfa32d9bab8e212b7c7ea9cfe[m
+Author: Mohit <arceus93007@gmail.com>
+Commit: Mohit <arceus93007@gmail.com>
+
+    Remove .env and node_modules from repository
+
+[33mcommit 63bf3b2895d5278cbfebbee9088d23946c52e9ed[m
+Author: Mohit <arceus93007@gmail.com>
+Commit: Mohit <arceus93007@gmail.com>
+
+    added user model
+
+[33mcommit b3e78efaa1bf8b9a47f6bbf6e51d7061ec1da10c[m
+Author: Mohit <arceus93007@gmail.com>
+Commit: Mohit <arceus93007@gmail.com>
+
+    first commit
