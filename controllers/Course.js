@@ -1,5 +1,5 @@
 const Course=require("../models/Course");
-const Tag=require("../models/tags");
+const Category=require("../models/category");
 const User=require("../models/User");
 const {uploadImageToCloudinary}=require("../utils/imageUploader");
 require("dotenv").config();
@@ -8,13 +8,13 @@ require("dotenv").config();
 exports.createCourse=async(req,res)=>{
   try{
     //fetch data
-    const {courseName, courseDescription,whatYouWillLearn,price,tag}=req.body;
+    const {courseName, courseDescription,whatYouWillLearn,price,category}=req.body;
 
     //get thumbnail
     const thumbnail=req.files.thumbnailImage;
 
     //validation
-    if(!courseName || !courseDescription || !whatYouWillLearn || !price || !tag || !thumbnail){
+    if(!courseName || !courseDescription || !whatYouWillLearn || !price || !category || !thumbnail){
       return res.status(400).json({
         success:false,
         message:"All fields are required"
@@ -33,11 +33,11 @@ exports.createCourse=async(req,res)=>{
     }
 
     //check given tag is valid or not
-    const tagDetails=await Tag.findById(tag);
-    if(!tagDetails){
+    const categoryDetails=await Category.findById(category);
+    if(!categoryDetails){
       return res.status(404).json({
         success:false,
-        message:"Tag Details not found"
+        message:"Category Details not found"
       });
     }
 
@@ -50,7 +50,7 @@ exports.createCourse=async(req,res)=>{
       courseDescription,
       instructor:instructorDetails._id,
       price,
-      tag:tagDetails._id,
+      category:categoryDetails._id,
       thumbnail:thumbnailImage.secure_url
     });
 
@@ -66,8 +66,8 @@ exports.createCourse=async(req,res)=>{
     )
 
     //update tag schema
-    await Tag.findByIdAndUpdate(
-      {_id: tagDetails._id},
+    await Category.findByIdAndUpdate(
+      {_id: categoryDetails._id},
       {
         $push:{
           course: newCourse._id,
@@ -91,8 +91,6 @@ exports.createCourse=async(req,res)=>{
     })
   }
 }
-
-
 
 
 //getAllCourses handler function
