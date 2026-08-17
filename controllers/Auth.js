@@ -5,6 +5,7 @@ const bcrypt=require("bcrypt");
 const Profile=require("../models/Profile");
 const jwt=require("jsonwebtoken");
 require("dotenv").config();
+const { passwordUpdated } = require("../mail/templates/passwordUpdate");
 
 //send OTP
 exports.sendOTP=async(req ,res )=>{
@@ -282,10 +283,31 @@ exports.changePassword=async(req,res )=>{
     const hashednewPassword=await bcrypt.hash(confirmPassword,10);
 
     //find in db and update password
-    const updatedPassword=await User.findByIdAndUpdate(
+    const updatedUserDetails=await User.findByIdAndUpdate(
       {_id:user._id},
       {password:hashednewPassword},
+      {new:true}
     )
+
+    // Send notification email
+		try {
+			const emailResponse = await mailSender(
+				updatedUserDetails.email,
+				passwordUpdated(
+					updatedUserDetails.email,
+					`Password updated successfully for ${updatedUserDetails.firstName} ${updatedUserDetails.lastName}`
+				)
+			);
+			console.log("Email sent successfully:", emailResponse.response);
+		} catch (error) {
+			// If there's an error sending the email, log the error and return a 500 (Internal Server Error) error
+			console.error("Error occurred while sending email:", error);
+			return res.status(500).json({
+				success: false,
+				message: "Error occurred while sending email",
+				error: error.message,
+			});
+		}
 
     return res.status(200).json({
       success:true,
