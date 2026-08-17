@@ -49,3 +49,49 @@ exports.showAllcategory=async(req,res)=>{
     })
   }
 }
+
+//category page details
+//will be used in ui for category based courses
+exports.categoryPageDetails=async (req,res)=>{
+  try{
+    //get category
+    //fetch all the courses corresponding to this category
+    //validation if no course
+    //get courses for different categories  
+
+    const {categoryId}=req.body;
+    const selectedCategory=await Category.findById(categoryId).populate("courses").exec();
+
+    //validate
+    if(!selectedCategory){
+      return res.status(404).json({
+        success:false,
+        message:"Data not found"
+      })
+    }
+
+    //get different category courses too for suggestion
+    const differentCategories=await Category.find({
+      //ne is not equal to this category id
+      _id:{$ne:categoryId},
+    }).populate("courses").exec();
+
+    //top selling courses
+
+
+    return res.status(200).json({
+      success:true,
+      data:{
+        selectedCategory,
+        differentCategories,
+      }
+    });
+
+  }
+  catch(error){
+    return res.status(500).json({
+      success:false,
+      message:error.message
+    })
+  }
+}
