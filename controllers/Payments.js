@@ -91,6 +91,7 @@ exports.capturePayment=async (req ,res)=>{
 
 
 //verify signature of razorpay and server webhook api
+//we will create route for this and pass its url to razorpay for intercepting api
 exports.verifySignature=async(req,res)=>{
   const webhookSecret="12345678";
 
