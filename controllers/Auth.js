@@ -33,7 +33,7 @@ exports.sendOTP=async(req ,res )=>{
       });
 
       //check unique otp or not in db
-      const result=await OTP.findOne({otp:otp});
+      let result=await OTP.findOne({otp:otp});
 
       while(result){
         otp=otpGenerator(6,{
@@ -114,7 +114,7 @@ exports.signUp=async(req,res)=>{
 
       //step2 otp matching
       const recentOtp=await OTP.find({email}).sort({createdAt:-1}).limit(1);
-      console.log("Recent OTP ",recentOTP); 
+      console.log("Recent OTP ",recentOtp); 
 
       if(recentOtp.length==0){
         //otp not found
@@ -122,7 +122,7 @@ exports.signUp=async(req,res)=>{
           success:false,
           message:"OTP not found"
         })
-      }else if(otp !== recentOtp){
+      }else if(otp !== recentOtp[0].otp){
         //invalid otp
         return res.status(400).json({
           success:false,
@@ -173,76 +173,92 @@ exports.signUp=async(req,res)=>{
 }
 
 //Login
-exports.login=async(req,res)=>{
-  try{
+exports.login = async (req, res) => {
+  try {
 
-    //get data from req body
-    //validate data
-    //user check exist or not
-    //generate JWT, after password matching
-    //create cookie and send response
+    // get data from req body
+    // validate data
+    // user check exist or not
+    // generate JWT, after password matching
+    // create cookie and send response
 
-     const {email,password}=req.body;
-     //validation
-     if(!email || !password){
+    const { email, password } = req.body;
+
+    // validation
+    if (!email || !password) {
       return res.status(403).json({
-        success:false,
-        message:"All fields are required please try again"
+        success: false,
+        message: "All fields are required please try again"
       });
+    }
 
-      const user=await User.findOne({email}).populate("additionalDetails");
-      if(!user){
-        return res.status(401).json({
-          success:false,
-          message:"User is not registered, please signup first"
-        })
+    const user = await User.findOne({ email }).populate("additionalDetails");
+
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "User is not registered, please signup first"
+      });
+    }
+
+    console.log("Entered password:", password);
+    console.log("Stored hash:", user.password);
+
+    const result = await bcrypt.compare(password, user.password);
+
+    console.log("Password match:", result);
+
+    // password matching
+    if (!result) {
+      return res.status(401).json({
+        success: false,
+        message: "Password is Incorrect"
+      });
+    }
+
+    // generate JWT after password matching
+    const payload = {
+      email: user.email,
+      id: user._id,
+      accountType: user.accountType
+    };
+
+    const token = jwt.sign(
+      payload,
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "2h"
       }
+    );
 
-      //generate jwt after password matching
-      if(await bcrypt.compare(password,user.password)){
-        //jwt generation
-        const payload={
-          email:user.email,
-          id:user._id,
-          accountType:user.accountType
-        }
+    user.token = token;
+    user.password = undefined;
 
-        const token=jwt.sign(payload, process.env.JWT_SECRET,{
-            expiresIn:"2h",
+    // create cookie and send response
+    const options = {
+      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+      httpOnly: true
+    };
 
-        });
-        user.token=token;
-        user.password=undefined;
-      }
-
-      //create cookie and send response
-      const options={
-        expires:new Date(Date.now()+3*24*60*60*1000),
-        httpOnly:true,
-      }
-      res.cookie("token",token,options).status(200).json({
-        success:true,
+    return res
+      .cookie("token", token, options)
+      .status(200)
+      .json({
+        success: true,
         token,
         user,
-        message:"Logged in successfully"
-      })
+        message: "Logged in successfully"
+      });
 
-     }
-     else{
-      return res.status(401).json({
-        success:false,
-        message:"Password is Incorrect"
-      })
-     }
-  }
-  catch(error){
+  } catch (error) {
     console.log(error);
+
     return res.status(500).json({
-      success:false,
-      message:"Login failure please try again"
-    })
+      success: false,
+      message: "Login failure please try again"
+    });
   }
-}
+};
 
 //changePassword
 exports.changePassword=async(req,res )=>{

@@ -7,7 +7,7 @@ const router=express.Router();
 const{createCourse,getAllCourses,getCourseDetails}=require("../controllers/Course");
 
 //categories controller
-const {showAllCategories,createCategory,categoryPageDetails}=require("../controllers/Section");
+const {showAllcategories,createCategory,categoryPageDetails}=require("../controllers/Category");
 
 //Sections controller
 const {createSection,updateSection,deleteSection}=require("../controllers/Section");
@@ -48,7 +48,7 @@ router.post("/getCourseDetails",getCourseDetails);
 
 //Category can only be created by Admin
 router.post("/createCategory",auth,isAdmin,createCategory);
-router.get("/showAllCategories",showAllCategories);
+router.get("/showAllCategories",showAllcategories);
 router.post("/getCategoryPageDetails",categoryPageDetails);
 
 

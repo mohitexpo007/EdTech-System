@@ -2,6 +2,7 @@
 const User=require("../models/User");
 const mailSender=require("../utils/mailSender");
 const bcrypt=require("bcrypt");
+const crypto=require("crypto")
 
 //resetPasswordtoken
 exports.resetPasswordToken=async(req ,res)=>{
@@ -82,7 +83,7 @@ exports.resetPassword=async (req,res)=>{
     }
 
     //get userdetails from db using token
-    const userDetails=await user.findOne({token:token});
+    const userDetails=await User.findOne({token:token});
 
     //if no entry->invalid token
     if(!userDetails){
@@ -99,7 +100,7 @@ exports.resetPassword=async (req,res)=>{
       });
     }
 
-    const hashedpassword=bcrypt.hash(password,10);
+    const hashedpassword=await bcrypt.hash(password,10);
 
     await User.findOneAndUpdate(
       {token:token},

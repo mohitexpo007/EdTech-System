@@ -50,6 +50,8 @@ exports.createCourse=async(req,res)=>{
       courseDescription,
       instructor:instructorDetails._id,
       price,
+      tag,
+      whatYouWillLearn,
       category:categoryDetails._id,
       thumbnail:thumbnailImage.secure_url
     });
