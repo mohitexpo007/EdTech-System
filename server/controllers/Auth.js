@@ -87,14 +87,26 @@ exports.signUp=async(req,res)=>{
       //return res
 
       //step1
-      const{firstName,lastName,email,password,confirmPassword,accountType,contactNumber,otp}=req.body;
+      const{firstName,lastName,email,password,confirmPassword,accountType,otp}=req.body;
 
-      if(!firstName || !lastName || !email || !password || !confirmPassword || !accountType || !contactNumber || !otp){
+      console.log({
+        firstName,
+        lastName,
+        email,
+        password,
+        confirmPassword,
+        accountType,
+        otp
+      });
+
+      if(!firstName || !lastName || !email || !password || !confirmPassword || !accountType || !otp){
         return res.status(403).json({
           success:false,
           message:"All fields are required"
         })
       }
+
+
 
       if(password!==confirmPassword){
         return res.status(400).json({
@@ -147,7 +159,6 @@ exports.signUp=async(req,res)=>{
         firstName,
         lastName,
         email,
-        contactNumber,
         password:hashedPassword,
         accountType,
         additionalDetails:profileDetails._id,
