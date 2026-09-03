@@ -22,7 +22,14 @@ export const studentEndpoints = {
   SEND_PAYMENT_SUCCESS_EMAIL_API: BASE_URL + "/payment/sendPaymentSuccessEmail",
 }
 
+//CONTACT-US API
+export const contactusEndpoint={
+  CONTACT_US_API:BASE_URL+"/reach/contact"
+}
+
+//categories endpoints
 console.log(BASE_URL);
 export const categories={
   CATEGORIES_API: BASE_URL + "/course/showAllCategories"
 }
+
