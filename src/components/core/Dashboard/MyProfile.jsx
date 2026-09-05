@@ -9,6 +9,7 @@ const MyProfile=()=>{
 
   const {user}=useSelector((state)=>state.profile)
   const navigate=useNavigate();
+  console.log(user?.additionalDetails)
 
   return(
     <div className="text-richblack-5">
@@ -39,6 +40,29 @@ const MyProfile=()=>{
       </div>
 
       {/* section 2 */}
+      <div className="rounded-md border border-richblack-700 bg-richblack-800 p-6 mb-6">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-lg font-semibold">
+            About
+          </h2>
+
+          <IconBtn 
+            text="Edit"
+            onclick={()=>{
+              navigate("/dashboard/settings")
+            }}>
+              <VscEdit/>
+              {/* add the icon */}
+          </IconBtn>
+        </div>
+
+        <p className="text-sm text-richblack-300 leading-6">
+          
+          {user?.additionalDetails?.about ? (user?.additionalDetails?.about) : ("Write something about yourself")}
+        </p>
+      </div>
+
+      {/* section 3 */}
       <div className="rounded-md border border-richblack-700 bg-richblack-800 p-6">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-lg font-semibold">

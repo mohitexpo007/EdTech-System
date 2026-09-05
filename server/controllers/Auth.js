@@ -212,6 +212,8 @@ exports.login = async (req, res) => {
       });
     }
 
+    
+
     console.log("Entered password:", password);
     console.log("Stored hash:", user.password);
 

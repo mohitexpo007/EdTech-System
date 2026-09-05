@@ -6,7 +6,8 @@
  exports.auth=async(req ,res ,next)=>{
   try{
     //extract token
-    const token=req.body.token || req.header("Authorisation").replace("Bearer ","");
+    const token=req.body?.token || req.header("Authorization").replace("Bearer ","");
+    console.log("EXTRACTED TOKEN:",token);
 
     //if token missing return response
      if(!token){

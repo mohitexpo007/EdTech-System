@@ -1,5 +1,8 @@
+require("dotenv").config();
 const Profile=require("../models/Profile");
 const User=require("../models/User");
+const {uploadImageToCloudinary}=require("../utils/imageUploader");
+
 
 exports.updateProfile=async (req ,res)=>{
   try{
@@ -11,10 +14,10 @@ exports.updateProfile=async (req ,res)=>{
     //return response
 
 
-    const {dateOfBirth="",about="",contactNumber,gender}=req.body;
+    const {dateOfBirth="",about="",contactNumber,gender,countryCode}=req.body;
 
     const id=req.user.id;
-    if(!contactNumber || !gender || !id){
+    if(!contactNumber || !gender || !id || !countryCode){
       return res.status(400).json({
         success:false,
         message:"All fields are required"
@@ -30,6 +33,7 @@ exports.updateProfile=async (req ,res)=>{
     profileDetails.about=about;
     profileDetails.gender=gender;
     profileDetails.contactNumber=contactNumber;
+    profileDetails.countryCode=countryCode;
 
     await profileDetails.save();
 
@@ -88,5 +92,39 @@ exports.deleteAccount=async (req ,res)=>{
       message:"User cannot be deleted",
       error:error.message
     })
+  }
+}
+
+
+exports.updateDisplayPicture=async(req, res)=>{
+  try{
+    const {image}=req.files;
+
+    if(!image){
+      return res.status(404).json({
+        success:false,
+        message:"Image not selected"
+      })
+    }
+    
+    const img=await uploadImageToCloudinary(image,process.env.FOLDER_NAME);
+    const userId=req.user.id;
+    console.log(userId);
+
+    const response=await User.findByIdAndUpdate(userId,{image:img.secure_url},{new:true});
+
+    return res.status(200).json({
+      success:true,
+      message:"Profile Picture Updated successfully",
+      user:response
+    }
+    )
+  }
+  catch(error){
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Could not update profile picture"
+    });
   }
 }
