@@ -41,7 +41,25 @@ export function updateDisplayPicture(formData,token){
 }
 
 export function updateProfile(profileFormData,token){
-  return async (dispatch)=>{
-    
+  return async (dispatch,getState)=>{
+    try{
+      const response=await apiConnector("PUT",UPDATE_PROFILE_API,profileFormData,
+        {
+          Authorization: `Bearer ${token}`,
+        }
+      )
+
+      if(!response.data.success){
+        throw new Error(response.data.message)
+      }
+
+      const { user } = getState().profile;
+      dispatch(setUser({...user,additionalDetails:response.data.profileDetails}))
+      toast.success("Profile Updated Successfully");
+    }
+    catch(error){
+      console.log("UPDATE_DISPLAY_PICTURE_API API ERROR............", error)
+      toast.error("Could Not Update Profile")
+    }
   }
 }

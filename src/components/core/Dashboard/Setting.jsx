@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CountryCode from "../../../data/countrycode.json"
 
 import IconBtn from "../../common/IconBtn";
-import { updateDisplayPicture } from "../../../services/operations/SettingsApi";
+import { updateDisplayPicture, updateProfile } from "../../../services/operations/SettingsApi";
 
 const Setting = () => {
 
@@ -29,11 +29,11 @@ const Setting = () => {
 
   //profile update
   const [profileFormData,setProfileFormData]=useState({
-    dob:"",
-    gender:"",
-    contactNo:"",
-    about:"",
-    countrycode:""
+      dateOfBirth:user?.additionalDetails?.dateOfBirth || "",
+      gender:user?.additionalDetails?.gender || "",
+      contactNumber:user?.additionalDetails?.contactNumber || "",
+      about:user?.additionalDetails?.about || "",
+      countryCode:user?.additionalDetails?.countryCode || ""
   })
   const handleOnChange = (e) => {
     setProfileFormData((prevData) => ({
@@ -43,10 +43,10 @@ const Setting = () => {
   }
 
   const onProfileChangeHandler=()=>{
-    dispatch()
+    dispatch(updateProfile(profileFormData,token));
   }
 
-  const {dob,gender,contactNo,about}=profileFormData;
+  const {dateOfBirth,gender,contactNumber,about,countryCode}=profileFormData;
 
   return(
     <div className="text-richblack-5 max-w-[900px] mx-auto pb-10">
@@ -116,9 +116,10 @@ const Setting = () => {
             <div>
               <label className="text-sm text-richblack-5 mb-2 block">Date of Birth</label>
               <input
-                name="dob"
+                name="dateOfBirth"
                 type="date"
                 onChange={handleOnChange}
+                value={dateOfBirth}
                 className="w-full rounded-md bg-richblack-700 px-4 py-3 text-sm text-richblack-400 outline-none border border-richblack-600"
               />
             </div>
@@ -127,17 +128,17 @@ const Setting = () => {
               <label className="text-sm text-richblack-5 mb-2 block">Gender<span className="text-pink-200">*</span></label>
               <div className="flex items-center gap-x-6 rounded-md bg-richblack-700 px-4 py-3 border border-richblack-600">
                 <label className="flex items-center gap-x-2 text-sm text-richblack-5 cursor-pointer">
-                  <input type="radio" name="gender" value="Male" className="accent-yellow-50 w-5 h-5" onChange={handleOnChange}/>
+                  <input type="radio" name="gender" value="Male" className="accent-yellow-50 w-5 h-5" checked={gender === "Male"} onChange={handleOnChange}/>
                   Male
                 </label>
 
                 <label className="flex items-center gap-x-2 text-sm text-richblack-400 cursor-pointer">
-                  <input type="radio" name="gender" value="Female" className="accent-yellow-50 w-5 h-5" onChange={handleOnChange}/>
+                  <input type="radio" name="gender" value="Female" className="accent-yellow-50 w-5 h-5" checked={gender === "Female"} onChange={handleOnChange}/>
                   Female
                 </label>
 
                 <label className="flex items-center gap-x-2 text-sm text-richblack-400 cursor-pointer">
-                  <input type="radio" name="gender" value="Other" className="accent-yellow-50 w-5 h-5" onChange={handleOnChange}/>
+                  <input type="radio" name="gender" value="Other" className="accent-yellow-50 w-5 h-5" checked={gender === "Other"} onChange={handleOnChange}/>
                   Other
                 </label>
               </div>
@@ -146,7 +147,7 @@ const Setting = () => {
             <div>
               <label className="text-sm text-richblack-5 mb-2 block">Phone Number<span className="text-pink-200">*</span></label>
               <div className="flex gap-x-3">
-                <select className="w-full h-[48px] rounded-md bg-richblack-800 px-3 text-richblack-200 outline-none border border-richblack-700 focus:border-yellow-50" name="dropdown" id="dropdown">
+                <select value={countryCode} onChange={handleOnChange} className="w-full h-[48px] rounded-md bg-richblack-800 px-3 text-richblack-200 outline-none border border-richblack-700 focus:border-yellow-50" name="countryCode" id="dropdown">
                   {
                     CountryCode.map((element,index)=>{
                       return(
@@ -159,9 +160,9 @@ const Setting = () => {
                 </select>
 
                 <input
-                  name="contactNo"
+                  name="contactNumber"
                   type="text"
-                  placeholder="12345 67890"
+                  placeholder={user.additionalDetails.contactNumber ? (user.additionalDetails.contactNumber): ("12345 56789")}
                   className="flex-1 rounded-md bg-richblack-700 px-4 py-3 text-sm text-richblack-400 placeholder:text-richblack-400 outline-none border border-richblack-600"
                   onChange={handleOnChange}
                 />
@@ -173,7 +174,7 @@ const Setting = () => {
               <input
                 name="about"
                 type="text"
-                placeholder="Enter Bio Details"
+                value={about}
                 className="w-full rounded-md bg-richblack-700 px-4 py-3 text-sm text-richblack-400 placeholder:text-richblack-400 outline-none border border-richblack-600"
                 onChange={handleOnChange}
               />
@@ -185,7 +186,7 @@ const Setting = () => {
 
        <div className="flex justify-end gap-x-3 mb-6">
         <button className="rounded-md bg-richblack-700 px-5 py-2 text-sm font-semibold text-richblack-100 hover:bg-richblack-600">Cancel</button>
-        <button className="cursor-pointer rounded-md bg-yellow-50 px-5 py-2 text-sm font-semibold text-richblack-900 hover:bg-yellow-100">Save</button>
+        <button className="cursor-pointer rounded-md bg-yellow-50 px-5 py-2 text-sm font-semibold text-richblack-900 hover:bg-yellow-100" onClick={onProfileChangeHandler}>Save</button>
       </div>
 
       {/* section 3 */}
