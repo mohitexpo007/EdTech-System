@@ -286,9 +286,9 @@ exports.changePassword=async(req,res )=>{
     //return response
 
 
-    const {email,oldPassword,newPassword,confirmPassword}=req.body;
+    const {email,oldPassword,newPassword}=req.body;
 
-    if(!oldPassword || !newPassword || !confirmPassword){
+    if(!oldPassword || !newPassword){
       return res.status(400).json({
         success:false,
         message:"All fields are required please try again"
@@ -298,15 +298,20 @@ exports.changePassword=async(req,res )=>{
         success:false,
         message:"Please enter different password than previous one"
       })
-    }else if(newPassword!==confirmPassword){
-      return res.status(400).json({
-        success:false,
-        message:"Confirm Password does not match with new Password"
-      })
     }
+
+    //old password verification
+    const hashedoldPassword=await bcrypt.hash(confirmPassword,10);
 
     //update password in db
     const user=await User.findOne({email});
+
+    if(hashedoldPassword!==user.password){
+      return res.status(400).json({
+        success:false,
+        message:"Wrong current password"
+      })
+    }
 
     //hash confirmPassword
     const hashednewPassword=await bcrypt.hash(confirmPassword,10);

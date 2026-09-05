@@ -53,13 +53,19 @@ export function updateProfile(profileFormData,token){
         throw new Error(response.data.message)
       }
 
-      const { user } = getState().profile;
-      dispatch(setUser({...user,additionalDetails:response.data.profileDetails}))
+       const { user } = getState().profile;
+      const updatedUser = {
+        ...user,
+        additionalDetails: response.data.profileDetails
+      };
+      dispatch(setUser(updatedUser));
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      console.log("Updated User:", updatedUser);
       toast.success("Profile Updated Successfully");
     }
     catch(error){
-      console.log("UPDATE_DISPLAY_PICTURE_API API ERROR............", error)
-      toast.error("Could Not Update Profile")
+      console.log("UPDATE_PROFILE_API API ERROR............", error)
+      toast.error(error.response?.data?.message || "Could Not Update Profile")
     }
   }
 }
