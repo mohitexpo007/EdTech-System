@@ -40,6 +40,8 @@ export function updateDisplayPicture(formData,token){
   }
 }
 
-export function updateProfile(){
-  
+export function updateProfile(profileFormData,token){
+  return async (dispatch)=>{
+    
+  }
 }
