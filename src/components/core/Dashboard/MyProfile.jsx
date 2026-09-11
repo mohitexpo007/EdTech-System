@@ -12,9 +12,9 @@ const MyProfile=()=>{
   console.log(user?.additionalDetails)
 
   return(
-    <div className="text-richblack-5">
+    <div className="text-richblack-5 max-w-[1000px] mx-auto pb-10 px-4 sm:px-6 lg:px-0">
 
-      <h1 className="text-3xl font-medium mb-8">
+      <h1 className="text-4xl font-medium mb-8">
         My Profile
       </h1>
       
@@ -25,8 +25,8 @@ const MyProfile=()=>{
           alt={`profile-${user?.firstName}`}
           className="aspect-square w-[78px] rounded-full object-cover"/>
           <div>
-            <p className="text-lg font-semibold"> {user?.firstName+" "+user?.lastName} </p>
-            <p className="text-sm text-richblack-300"> {user?.email} </p>
+            <p className="text-xl font-semibold"> {user?.firstName+" "+user?.lastName} </p>
+            <p className="text-base text-richblack-300"> {user?.email} </p>
           </div>
         </div>
         <IconBtn 
@@ -36,13 +36,13 @@ const MyProfile=()=>{
           }}>
             {/* add the icon */}
             <VscEdit/>
-          </IconBtn>
+        </IconBtn>
       </div>
 
       {/* section 2 */}
       <div className="rounded-md border border-richblack-700 bg-richblack-800 p-6 mb-6">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-lg font-semibold">
+          <h2 className="text-xl font-semibold">
             About
           </h2>
 
@@ -56,7 +56,7 @@ const MyProfile=()=>{
           </IconBtn>
         </div>
 
-        <p className="text-sm text-richblack-300 leading-6">
+        <p className="text-base text-richblack-300 leading-6">
           
           {user?.additionalDetails?.about ? (user?.additionalDetails?.about) : ("Write something about yourself")}
         </p>
@@ -65,7 +65,7 @@ const MyProfile=()=>{
       {/* section 3 */}
       <div className="rounded-md border border-richblack-700 bg-richblack-800 p-6">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-lg font-semibold">
+          <h2 className="text-xl font-semibold">
             Personal Details
           </h2>
 
@@ -81,38 +81,38 @@ const MyProfile=()=>{
 
         <div className="grid grid-cols-2 gap-x-20 gap-y-6">
           <div>
-            <p className="text-sm text-richblack-400 mb-1">
+            <p className="text-base text-richblack-400 mb-1">
               First Name
             </p>
-            <p className="text-sm text-richblack-5">
+            <p className="text-base text-richblack-5">
               {user?.firstName}
             </p>
           </div>
 
           <div>
-            <p className="text-sm text-richblack-400 mb-1">
+            <p className="text-base text-richblack-400 mb-1">
               Last Name
             </p>
-            <p className="text-sm text-richblack-5">
+            <p className="text-base text-richblack-5">
               {user?.lastName}
             </p>
           </div>
 
           <div>
-            <p className="text-sm text-richblack-400 mb-1">
+            <p className="text-base text-richblack-400 mb-1">
               Email
             </p>
-            <p className="text-sm text-richblack-5">
+            <p className="text-base text-richblack-5">
               {user?.email}
             </p>
           </div>
 
           <div>
-            <p className="text-sm text-richblack-400 mb-1">
+            <p className="text-base text-richblack-400 mb-1">
               Phone Number
             </p>
-            <p className="text-sm text-richblack-5">
-              {user?.contactNumber ? user?.contactNumber : "Add Phone Number"}
+            <p className="text-base text-richblack-5">
+              {user?.additionalDetails?.contactNumber ? (user?.additionalDetails?.contactNumber) :"Add Phone Number"}
             </p>
           </div>
         </div>

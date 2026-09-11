@@ -34,7 +34,7 @@ router.post("/updateSection",auth,isInstructor,updateSection);
 //Delete a section
 router.post("/deleteSection",auth,isInstructor,deleteSection);
 //edit subsection
-router.post("updateSubSection",auth,isInstructor,updateSubSection);
+router.post("/updateSubSection",auth,isInstructor,updateSubSection);
 //Delete SubSection
 router.post("/deleteSubSection",auth,isInstructor,deleteSubSection);
 //Add a subSection to a section

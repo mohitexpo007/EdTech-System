@@ -69,3 +69,26 @@ export function updateProfile(profileFormData,token){
     }
   }
 }
+
+
+export function changePassword(passwordData,token){
+  return async (dispatch)=>{
+    try{
+      const response=await apiConnector("POST",CHANGE_PASSWORD_API,passwordData,
+        {
+          Authorization: `Bearer ${token}`,
+        }
+      )
+
+      if(!response.data.success){
+        throw new Error(response.data.message)
+      }
+
+      toast.success("Password Updated Successfully");
+    }
+    catch(error){
+      console.log("UPDATE_Password_API API ERROR............", error)
+      toast.error(error.response?.data?.message || "Could Not Update Password")
+    }
+  }
+}

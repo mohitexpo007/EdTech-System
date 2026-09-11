@@ -41,4 +41,19 @@ export const sidebarLinks = [
     type: ACCOUNT_TYPE.STUDENT,
     icon: "VscHistory",
   },
+  {
+    id: 7,
+    name: "Wishlist",
+    path: "/dashboard/cart",
+    type: ACCOUNT_TYPE.STUDENT,
+    icon: "VscBookmark",
+  },
+
+  {
+    id: 8,
+    name: "Courses",
+    path: "/dashboard/courses",
+    type: ACCOUNT_TYPE.STUDENT,
+    icon: "VscMortarBoard",
+  },
 ];
