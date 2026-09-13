@@ -6,12 +6,14 @@ import { MdEdit, MdDelete } from "react-icons/md";
 import { COURSE_STATUS } from "../../../../utils/constants";
 import ConfirmationModal from "../../../common/ConfirmationModal";
 import { deleteCourse, fetchInstructorCourses } from "../../../../services/operations/courseDetailsAPI";
+import { useNavigate } from "react-router-dom";
 
 
 export default function CoursesTable({courses,setCourses}){
   const {token}=useSelector((state)=>state.auth);
   const [loading,setLoading]=useState(false);
   const [confirmationModal,setConfirmationModal]=useState(null);
+  const navigate=useNavigate();
 
   const handleCourseDelete= async(courseId)=>{
     console.log(courseId);
@@ -93,6 +95,11 @@ export default function CoursesTable({courses,setCourses}){
                     aria-label="Edit course"
                     title="Edit course"
                     className="mr-4 rounded-md p-3 text-2xl text-richblack-300 transition-all hover:bg-richblack-700 hover:text-yellow-50 disabled:cursor-not-allowed disabled:opacity-50"
+
+                    onClick={()=>{
+                      //params me pass ki hai
+                      navigate(`/dashboard/edit-course/${course._id}`)
+                    }}
                     >
                     <MdEdit />
                     </button>
