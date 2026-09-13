@@ -13,8 +13,9 @@ const courseSchema=new mongoose.Schema({
     ref:"User",
     required:true,
   },
-  whatWillYouLearn:{
+  whatYouWillLearn:{
     type:String,
+    required:true,
   },
   courseContent:[
     {
@@ -50,7 +51,8 @@ const courseSchema=new mongoose.Schema({
     }
   ],
   instructions:{
-    type:[String]
+    type:[String],
+    required:true,
   },
   status:{
     type:String,

@@ -241,7 +241,7 @@ exports.login = async (req, res) => {
       payload,
       process.env.JWT_SECRET,
       {
-        expiresIn: "2h"
+        expiresIn: "24h"
       }
     );
 

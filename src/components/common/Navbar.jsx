@@ -21,7 +21,7 @@ const Navbar = () => {
   {/* api call to backend for loading all categories for catalog dropdown */}
   const [subLinks,setSubLinks]=useState([]);
 
-  
+
   const fetchSublinks = async()=>{
       try{
         const result=await apiConnector("GET",categories.CATEGORIES_API)
@@ -62,7 +62,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="relative z-[100] flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700 overflow-visible">
+    <div className="relative z-[100] flex h-16 items-center justify-center overflow-visible border-b-[1px] border-b-richblack-700">
 
       <div className="relative flex w-11/12 max-w-maxContent items-center justify-between">
 
@@ -79,61 +79,38 @@ const Navbar = () => {
 
         {/* Nav Links - CENTER */}
         <nav className="absolute left-1/2 -translate-x-1/2">
-          <ul className="flex items-center gap-x-6 text-richblack-25">
+          <ul className="flex items-center gap-x-8 text-base text-richblack-25">
 
             {NavbarLinks.map((link, index) => (
               <li key={index}>
                   {
                     link.title === "Catalog" ? (
                       <div
-                        className="relative flex items-center gap-2"
+                        className="relative flex items-center gap-2 text-base"
                         onMouseEnter={handleCatalogEnter}
                         onMouseLeave={handleCatalogLeave}
                       >
                         {/* Catalog */}
-                        <p className="cursor-pointer">
+                        <p className="cursor-pointer text-base">
                           {link.title}
                         </p>
 
-                        <IoIosArrowDropdownCircle />
+                        <IoIosArrowDropdownCircle className="text-xl" />
 
                         {/* Dropdown */}
                         <div
-                          className={`
-                            absolute left-1/2 top-full z-50
-                            w-[220px]
-                            -translate-x-1/2
-                            pt-2
-                            transition-all duration-200
-                            ${
+                          className={`absolute left-1/2 top-full z-50 w-[240px] -translate-x-1/2 pt-3 transition-all duration-200 ${
                               catalogOpen
                                 ? "visible opacity-100"
                                 : "invisible opacity-0"
-                            }
-                          `}
+                            }`}
                         >
                           <div
-                            className="
-                              relative
-                              rounded-md
-                              bg-richblack-5
-                              p-4
-                              text-richblack-900
-                              shadow-lg
-                            "
+                            className="relative rounded-md bg-richblack-5 p-5 text-richblack-900 shadow-lg"
                           >
                             {/* Arrow */}
                             <div
-                              className="
-                                absolute
-                                left-1/2
-                                -top-2
-                                h-4
-                                w-4
-                                -translate-x-1/2
-                                rotate-45
-                                bg-richblack-5
-                              "
+                              className="absolute -top-2 left-1/2 h-4 w-4 -translate-x-1/2 rotate-45 bg-richblack-5"
                             />
 
                             {/* Categories */}
@@ -142,23 +119,13 @@ const Navbar = () => {
                                 <Link
                                   to={`/category/${subLink.name}`}
                                   key={index}
-                                  className="
-                                    relative z-10
-                                    block
-                                    rounded-md
-                                    px-3
-                                    py-2
-                                    text-sm
-                                    hover:bg-richblack-25
-                                    hover:text-green-400
-                                    transition-all duration-150
-                                  "
+                                  className="relative z-10 block rounded-md px-4 py-3 text-base transition-all duration-150 hover:bg-richblack-25 hover:text-green-400"
                                 >
                                   {subLink.name}
                                 </Link>
                               ))
                             ) : (
-                              <p className="text-sm">
+                              <p className="text-base">
                                 No categories available
                               </p>
                             )}
@@ -170,8 +137,8 @@ const Navbar = () => {
                         <p
                           className={
                             matchRoute(link.path)
-                              ? "text-yellow-25"
-                              : "text-richblack-25"
+                              ? "text-base text-yellow-25"
+                              : "text-base text-richblack-25"
                           }
                         >
                           {link.title}
@@ -187,7 +154,7 @@ const Navbar = () => {
         </nav>
 
         {/* Right Side */}
-        <div className="ml-auto flex items-center gap-x-4">
+        <div className="ml-auto flex items-center gap-x-5">
 
           {/* Cart */}
           {user && user?.accountType !== "Instructor" && (
@@ -195,10 +162,10 @@ const Navbar = () => {
               to="/dashboard/cart"
               className="relative flex items-center justify-center text-richblack-25 transition-all duration-200 hover:text-yellow-25"
             >
-              <AiOutlineShoppingCart className="text-[24px]" />
+              <AiOutlineShoppingCart className="text-[28px]" />
 
               {totalItems > 0 && (
-                <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-yellow-25 text-[11px] font-bold text-richblack-900">
+                <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-yellow-25 text-xs font-bold text-richblack-900">
                   {totalItems}
                 </span>
               )}
@@ -207,7 +174,7 @@ const Navbar = () => {
 
           {token === null && (
             <Link to="/login">
-              <button className="border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 rounded-md">
+              <button className="rounded-md border border-richblack-700 bg-richblack-800 px-4 py-2.5 text-base text-richblack-100">
                 Log In
               </button>
             </Link>
@@ -215,7 +182,7 @@ const Navbar = () => {
 
           {token === null && (
             <Link to="/signup">
-              <button className="border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 rounded-md">
+              <button className="rounded-md border border-richblack-700 bg-richblack-800 px-4 py-2.5 text-base text-richblack-100">
                 Sign Up
               </button>
             </Link>

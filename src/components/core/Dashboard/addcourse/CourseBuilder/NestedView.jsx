@@ -49,8 +49,6 @@ const NestedView=({handleChangeEditSectionName})=>{
     setConfirmationModal(null)
   }
 
-
-
   return(
     <div className="rounded-lg border border-richblack-600 bg-richblack-800 p-5 shadow-lg">
       <div className="space-y-2">
@@ -60,12 +58,12 @@ const NestedView=({handleChangeEditSectionName})=>{
             {/* section displayed */}
             <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-4 text-richblack-5 transition-all hover:bg-richblack-600">
                <div className="flex items-center gap-3">
-                <RxDropdownMenu className="text-richblack-300"/>
-                <p className="text-base font-semibold">{section.sectionName}</p>
+                <RxDropdownMenu className="text-lg text-richblack-300"/>
+                <p className="text-lg font-semibold">{section.sectionName}</p>
                </div>
 
                <div className="flex items-center gap-4">
-                <button onClick={()=>handleChangeEditSectionName(section._id,section.sectionName)} className="text-richblack-300 transition-all hover:text-yellow-50">
+                <button onClick={()=>handleChangeEditSectionName(section._id,section.sectionName)} className="text-lg text-richblack-300 transition-all hover:text-yellow-50">
                   <MdEdit/>
                 </button>
 
@@ -78,13 +76,13 @@ const NestedView=({handleChangeEditSectionName})=>{
                     btn1Handler: ()=> handleDeleteSection(section._id),
                     btn2Handler: ()=>setConfirmationModal(null)
                   })
-                }} className="text-richblack-300 transition-all hover:text-pink-200">
+                }} className="text-lg text-richblack-300 transition-all hover:text-pink-200">
                   <MdDelete/>
                 </button>
 
                 <span className="text-richblack-500">|</span>
                 
-                <FaSortDown className="text-richblack-300"/>
+                <FaSortDown className="text-lg text-richblack-300"/>
                  
                </div>
             </summary>
@@ -95,11 +93,11 @@ const NestedView=({handleChangeEditSectionName})=>{
                   section.subSection?.map((data)=>(
                     <div key={data?._id}
                     onClick={()=>setViewSubSection(data)}
-                    className="flex cursor-pointer items-center justify-between border-b border-richblack-600 px-2 py-3 text-sm text-richblack-200 transition-all hover:bg-richblack-600"
+                    className="flex cursor-pointer items-center justify-between border-b border-richblack-600 px-2 py-3 text-base text-richblack-200 transition-all hover:bg-richblack-600"
                     >
                       <div className="flex items-center gap-3">
 
-                        <RxDropdownMenu className="text-richblack-400"/>
+                        <RxDropdownMenu className="text-base text-richblack-400"/>
                         <p>{data.title}</p>
 
                       </div>
@@ -107,15 +105,16 @@ const NestedView=({handleChangeEditSectionName})=>{
                       <div className="flex items-center gap-4">
                         {/* edit */}
                         <button
-                        onClick={()=>setEditSubSection({...data,sectionId:section._id})}
-                        className="text-richblack-300 transition-all hover:text-yellow-50"
+                        onClick={(e)=>{e.stopPropagation(); setEditSubSection({...data,sectionId:section._id})}}
+                        className="text-base text-richblack-300 transition-all hover:text-yellow-50"
                         >
                           <MdEdit/>
                         </button>
 
                         {/* delete */}
                         <button
-                        onClick={()=>{
+                        onClick={(e)=>{
+                        e.stopPropagation();
                         setConfirmationModal({
                           text1:"Delete this Sub Section",
                           text2:"selected Lecture will be deleted",
@@ -125,7 +124,7 @@ const NestedView=({handleChangeEditSectionName})=>{
                           btn2Handler: ()=>setConfirmationModal(null)
                         })
                         }
-                        } className="text-richblack-300 transition-all hover:text-pink-200">
+                        } className="text-base text-richblack-300 transition-all hover:text-pink-200">
                           <MdDelete/>
                         </button>
 

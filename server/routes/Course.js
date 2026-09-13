@@ -4,7 +4,7 @@ const router=express.Router();
 //importing controllers
 
 //course controller
-const{createCourse,getAllCourses,getCourseDetails}=require("../controllers/Course");
+const{createCourse,getAllCourses,getCourseDetails, editCourse, getInstructorCourses, deleteCourse}=require("../controllers/Course");
 
 //categories controller
 const {showAllcategories,createCategory,categoryPageDetails}=require("../controllers/Category");
@@ -43,7 +43,12 @@ router.post("/addSubSection",auth,isInstructor,createSubSection);
 router.get("/getAllCourses",getAllCourses);
 //Get details for a Specific course
 router.post("/getCourseDetails",getCourseDetails);
-
+//edit course
+router.post("/editCourse",editCourse)
+//instructor courses
+router.get("/getInstructorCourses",auth,isInstructor,getInstructorCourses);
+//delete course
+router.delete("/deleteCourse",auth,isInstructor,deleteCourse);
 
 
 //Category can only be created by Admin
@@ -56,5 +61,6 @@ router.post("/getCategoryPageDetails",categoryPageDetails);
 router.post("/createRating",auth,isStudent,createRating);
 router.get("/getAverageRating",getAverageRating);
 router.get("/getReviews",getAllRating);
+
 
 module.exports=router

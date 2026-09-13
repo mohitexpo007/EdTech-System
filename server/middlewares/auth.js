@@ -22,6 +22,7 @@
       console.log(decode);
       req.user=decode;
      }
+     //this jwt.verify takes care of expiry it checks expiry time is greater or less if its expired it throws error and goes to catch block
      catch(err){
       return res.status(401).json({
         success:false,

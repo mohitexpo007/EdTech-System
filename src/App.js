@@ -16,6 +16,7 @@ import Setting from "./components/core/Dashboard/Setting";
 import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
 import Cart from "./components/core/Dashboard/Cart";
 import AddCourse from "./components/core/Dashboard/addcourse/AddCourse";
+import MyCourses from "./components/core/Dashboard/MyCourses"
 
 function App() {
   return (
@@ -41,6 +42,8 @@ function App() {
           <Route path="enrolled-courses" element={<EnrolledCourses/>}/>
           <Route path="cart" element={<Cart/>}/>
           <Route path="add-course" element={<AddCourse/>}/>
+
+          <Route path="my-courses" element={<MyCourses/>}/>
         </Route>
 
         <Route path="*" element={<Error/>}/>

@@ -2,6 +2,7 @@ import { Fragment } from "react"
 import { FaCheck } from "react-icons/fa"
 import { useSelector } from "react-redux"
 
+import PublishCourse from "./PublishCourse"
 import CourseInformationForm from "./CourseForms/CourseInformationForm"
 import CourseBuilderForm from "./CourseBuilder/CourseBuilderForm"
 
@@ -81,6 +82,7 @@ export default function RenderSteps() {
       {/* Render specific component based on current step */}
       {step === 1 && <CourseInformationForm />}
       {step === 2 && <CourseBuilderForm />}
+      {step === 3 && <PublishCourse />}
     </>
   )
 }
