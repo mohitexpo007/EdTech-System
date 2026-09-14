@@ -117,7 +117,7 @@ const Navbar = () => {
                             {subLinks?.length > 0 ? (
                               subLinks.map((subLink, index) => (
                                 <Link
-                                  to={`/category/${subLink.name}`}
+                                  to={`/category/${subLink.name.split(" ").join("-").toLowerCase()}`}
                                   key={index}
                                   className="relative z-10 block rounded-md px-4 py-3 text-base transition-all duration-150 hover:bg-richblack-25 hover:text-green-400"
                                 >

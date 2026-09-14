@@ -18,6 +18,7 @@ import Cart from "./components/core/Dashboard/Cart";
 import AddCourse from "./components/core/Dashboard/addcourse/AddCourse";
 import MyCourses from "./components/core/Dashboard/MyCourses"
 import EditCourse from "./components/core/Dashboard/EditCourse";
+import Catalog from "./pages/Catalog";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/update-password/:id" element={<UpdatePassword/>}/>
         <Route path="/verify-email" element={<VerifyEmail/>}/>
         <Route path="/about" element={<About/>}/>
+        <Route path="/category/:catalogName" element={<Catalog/>}/>
 
         <Route path="/dashboard" element={
           <PrivateRoute>

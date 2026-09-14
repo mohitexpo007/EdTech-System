@@ -173,8 +173,7 @@ exports.getCourseDetails=async (req,res)=>{
 // Edit Course Details
 exports.editCourse = async (req, res) => {
   try {
-    const { courseId } = req.body
-    const updates = req.body
+    const { courseId, ...updates } = req.body
     const course = await Course.findById(courseId)
 
     if (!course) {
@@ -182,21 +181,27 @@ exports.editCourse = async (req, res) => {
     }
 
     // If Thumbnail Image is found, update it
-    if (req.files) {
+    if (req.files?.thumbnail) {
       console.log("thumbnail update")
-      const thumbnail = req.files.thumbnailImage
+
+      const thumbnail = req.files.thumbnail
+
       const thumbnailImage = await uploadImageToCloudinary(
         thumbnail,
         process.env.FOLDER_NAME
       )
+
       course.thumbnail = thumbnailImage.secure_url
     }
 
     // Update only the fields that are present in the request body
     for (const key in updates) {
-      if (Object.prototype.hasOwnProperty.call(updates,key)) {
+      if (Object.prototype.hasOwnProperty.call(updates, key)) {
         if (key === "tag" || key === "instructions") {
-          course[key] = JSON.parse(updates[key])
+          course[key] =
+            typeof updates[key] === "string"
+              ? JSON.parse(updates[key])
+              : updates[key]
         } else {
           course[key] = updates[key]
         }
@@ -224,14 +229,15 @@ exports.editCourse = async (req, res) => {
       })
       .exec()
 
-    res.json({
+    return res.json({
       success: true,
       message: "Course updated successfully",
       data: updatedCourse,
     })
   } catch (error) {
     console.error(error)
-    res.status(500).json({
+
+    return res.status(500).json({
       success: false,
       message: "Internal server error",
       error: error.message,
