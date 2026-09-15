@@ -19,6 +19,7 @@ import AddCourse from "./components/core/Dashboard/addcourse/AddCourse";
 import MyCourses from "./components/core/Dashboard/MyCourses"
 import EditCourse from "./components/core/Dashboard/EditCourse";
 import Catalog from "./pages/Catalog";
+import CourseDetails from "./pages/CourseDetails";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/verify-email" element={<VerifyEmail/>}/>
         <Route path="/about" element={<About/>}/>
         <Route path="/category/:catalogName" element={<Catalog/>}/>
+        <Route path="/courses/:courseId" element={<CourseDetails/>}/>
 
         <Route path="/dashboard" element={
           <PrivateRoute>

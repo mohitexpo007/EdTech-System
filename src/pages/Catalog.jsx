@@ -70,16 +70,16 @@ const Catalog=()=>{
   return(
     <div className="min-h-screen bg-richblack-900 text-richblack-5">
 
-      <div className="bg-richblack-800 px-6 py-10 sm:px-10 lg:px-0">
-        <div className="mx-auto flex w-11/12 max-w-[1600px] flex-col gap-5 lg:flex-row lg:justify-between">
-          <div className="flex flex-col gap-4">
+      <div className="bg-richblack-800 px-6 py-6 sm:px-10 lg:px-0">
+        <div className="mx-auto flex w-11/12 max-w-[1600px] flex-col gap-4 lg:flex-row lg:justify-between">
+          <div className="flex flex-col gap-3">
             <p className="text-sm text-richblack-300">{`Home / Catalog / `}<span className="font-semibold text-yellow-50">{catalogPageData?.data?.selectedCategory?.name}</span></p>
             <p className="text-3xl font-bold text-richblack-5 sm:text-4xl">{catalogPageData?.data?.selectedCategory?.name}</p>
             <p className="max-w-[850px] text-sm leading-6 text-richblack-300 sm:text-base">{catalogPageData?.data?.selectedCategory?.description}</p>
           </div>
           <div className="min-w-[180px]">
-            <p className="mb-4 text-lg font-semibold text-richblack-5">Related resources</p>
-            <ul className="flex flex-col gap-3 text-sm text-richblack-300">
+            <p className="mb-3 text-lg font-semibold text-richblack-5">Related resources</p>
+            <ul className="flex flex-col gap-2 text-sm text-richblack-300">
               <li className="list-disc ml-4">Doc {catalogPageData?.data?.selectedCategory?.name}</li>
               <li className="list-disc ml-4">Cheatsheets</li>
               <li className="list-disc ml-4">Articles</li>
@@ -92,7 +92,7 @@ const Catalog=()=>{
 
       <div className="mx-auto flex w-11/12 max-w-[1600px] flex-col gap-14 py-14">
 
-        {/*section 1 */}
+        {/*section 1 selected course*/}
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-5">
             <div className="text-3xl font-bold text-richblack-5 sm:text-4xl">Courses to get you started</div>
@@ -109,7 +109,7 @@ const Catalog=()=>{
         </div>
 
 
-        {/*section 2 */}
+        {/*section 2 other courses*/}
         <div className="flex flex-col gap-6">
           <p className="text-3xl font-bold text-richblack-5 sm:text-4xl">Top Courses in {catalogPageData?.data?.selectedCategory?.name}</p>
           <div className="w-full overflow-hidden">
@@ -117,7 +117,7 @@ const Catalog=()=>{
           </div>
         </div>
 
-        {/* section 3 */}
+        {/* section 3 frequently bought courses*/}
         <div className="flex flex-col gap-6">
           <p className="text-3xl font-bold text-richblack-5 sm:text-4xl">Frequently Bought</p>
           <div className="py-2">
