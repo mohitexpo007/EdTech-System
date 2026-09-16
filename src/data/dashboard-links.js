@@ -49,11 +49,4 @@ export const sidebarLinks = [
     icon: "VscBookmark",
   },
 
-  {
-    id: 8,
-    name: "Courses",
-    path: "/dashboard/courses",
-    type: ACCOUNT_TYPE.STUDENT,
-    icon: "VscMortarBoard",
-  },
 ];

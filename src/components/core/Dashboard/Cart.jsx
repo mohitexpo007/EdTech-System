@@ -6,17 +6,27 @@ import { removeFromCart } from "../../../slices/cartSlice";
 import IconBtn from "../../common/IconBtn";
 import { GiNinjaStar } from "react-icons/gi";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
+import { buyCourse } from "../../../services/operations/studentFeatures";
 
 export default function Cart(){
 
   const {total,totalItems}=useSelector((state)=>state.cart);
   const {cart}=useSelector((state)=>state.cart);
   const dispatch=useDispatch();
+  const {user}=useSelector((state)=>state.profile);
+  const navigate=useNavigate();
+  const{token}=useSelector((state)=>state.auth);
 
   const handleBuyCourse=()=>{
+    
     const courses=cart.map((courses)=>courses._id);
     console.log("Bought these courses:",courses)
     //TODO : API INTEGRATE TO PAYMENT GATEWAY
+    if(token){
+        buyCourse(token,courses,user,navigate,dispatch);
+        return
+    }
   }
 
 
@@ -34,7 +44,7 @@ export default function Cart(){
           cart.map((course,index)=>(
             <div className="grid grid-cols-1 md:grid-cols-[1fr_130px] gap-5 md:gap-8 py-6 border-b border-richblack-700">
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <img className="w-full sm:w-[180px] h-[150px] sm:h-[145px] rounded-md object-cover" src={course?.thumbnail}/>
+                <img className="w-full sm:w-[250px] h-[150px] sm:h-[145px] rounded-md object-cover" src={course?.thumbnail}/>
                 <div className="flex-1">
                   <p className="text-lg font-semibold text-richblack-5">{course?.courseName}</p>
                   <p className="text-base text-richblack-400 mt-2">{course?.category?.name}</p>
@@ -76,7 +86,7 @@ export default function Cart(){
       )}
 
       {/* checkout and total amount */}
-      <div className="w-full max-w-[1050px] lg:max-w-[275px] lg:ml-auto mt-5 rounded-md border border-richblack-700 bg-richblack-800 p-6">
+      <div className="w-full max-w-[1050px] lg:max-w-[275px] lg:ml-auto mt-5 rounded-md border border-richblack-700 bg-richblack-800 p-6 -translate-y-96">
         
         <p className="text-base text-richblack-300 mb-2">Total:</p>
         <p className="text-2xl font-semibold text-yellow-50 mb-5">Rs {total}</p>
