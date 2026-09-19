@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import HighlightText from "./HighlightText";
 
 import know_your_progress from "../../../assets/Images/Know_your_progress.png";
@@ -7,8 +7,26 @@ import plan_your_lesson from "../../../assets/Images/Plan_your_lessons.png";
 import CTAButton from "./Button";
 
 const LearningLanguageSection = () => {
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return undefined;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.2 });
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="mt-[130px]">
+    <div ref={sectionRef} className={`learning-language-section mt-[130px] ${isVisible ? "is-visible" : ""}`}>
       <div className="flex flex-col gap-5 items-center">
 
         {/* Heading */}
@@ -30,19 +48,19 @@ const LearningLanguageSection = () => {
           <img
             src={know_your_progress}
             alt="Know your progress"
-            className="object-contain w-[80%] sm:w-[65%] md:w-auto md:-mr-32"
+            className="learning-language-section__card learning-language-section__card--one object-contain w-[80%] sm:w-[65%] md:w-auto md:-mr-32"
           />
 
           <img
             src={compare_with_others}
             alt="Compare with others"
-            className="object-contain w-[80%] sm:w-[65%] md:w-auto z-10"
+            className="learning-language-section__card learning-language-section__card--two object-contain w-[80%] sm:w-[65%] md:w-auto z-10"
           />
 
           <img
             src={plan_your_lesson}
             alt="Plan your lessons"
-            className="object-contain w-[80%] sm:w-[65%] md:w-auto md:-ml-36"
+            className="learning-language-section__card learning-language-section__card--three object-contain w-[80%] sm:w-[65%] md:w-auto md:-ml-36"
           />
 
         </div>

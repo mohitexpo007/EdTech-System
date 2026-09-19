@@ -50,7 +50,7 @@ router.get("/getInstructorCourses",auth,isInstructor,getInstructorCourses);
 //delete course
 router.delete("/deleteCourse",auth,isInstructor,deleteCourse);
 //edit course ke lie full course details
-router.post("/getFullCourseDetails",auth,isInstructor,getFullCourseDetails)
+router.post("/getFullCourseDetails",auth,getFullCourseDetails)
 
 
 //Category can only be created by Admin

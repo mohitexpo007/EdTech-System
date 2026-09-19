@@ -49,7 +49,7 @@ exports.createRating=async (req,res)=>{
     const ratingandreview=await RatingAndReview.create({rating,review,course:courseId,user:userId});
 
     const updatedCourseDetails=await Course.findByIdAndUpdate(
-                                {_id:CourseId},
+                                {_id:courseId},
                                 {$push:{ratingAndReview:ratingandreview._id}},
                                 {new:true}
     );
@@ -63,6 +63,7 @@ exports.createRating=async (req,res)=>{
 
   }
   catch(error){
+    console.log("Rating error",error);
     return res.status(500).json({
       success:false,
       message:error.message

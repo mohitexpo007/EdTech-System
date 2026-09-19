@@ -4,6 +4,8 @@ const Section=require("../models/Section");
 const SubSection=require("../models/SubSection")
 const User=require("../models/User");
 const {uploadImageToCloudinary}=require("../utils/imageUploader");
+const CourseProgress = require("../models/CourseProgress");
+const { convertSecondsToDuration } = require("../utils/secToDuration")
 require("dotenv").config();
 
 //createCourse handler function
@@ -346,6 +348,12 @@ exports.getFullCourseDetails = async (req, res) => {
       })
       .exec()
 
+    let courseProgressCount = await CourseProgress.findOne({
+      courseID: courseId,
+      userId: userId,
+    })
+
+    console.log("courseProgressCount : ", courseProgressCount)
 
     if (!courseDetails) {
       return res.status(400).json({
@@ -361,18 +369,33 @@ exports.getFullCourseDetails = async (req, res) => {
     //   });
     // }
 
+    let totalDurationInSeconds = 0
+    courseDetails.courseContent.forEach((content) => {
+      content.subSection.forEach((subSection) => {
+        const timeDurationInSeconds = parseInt(subSection.timeDuration)
+        totalDurationInSeconds += timeDurationInSeconds
+      })
+    })
+
+    const totalDuration = convertSecondsToDuration(totalDurationInSeconds)
+
     return res.status(200).json({
       success: true,
       data: {
         courseDetails,
+        totalDuration,
+        completedVideos: courseProgressCount?.completedVideos
+          ? courseProgressCount?.completedVideos
+          : [],
       },
     })
   } catch (error) {
-    console.log(error);
+    console.log("printing error of getfullcoursedetails",error);
     return res.status(500).json({
       success: false,
       message: error.message,
     })
   }
 }
+
 

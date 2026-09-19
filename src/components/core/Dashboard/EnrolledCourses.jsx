@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux"
 import { getUserEnrolledCourses } from "../../../services/operations/profileAPI";
 import ProgressBar from "@ramonak/react-progress-bar"
+import { useNavigate } from "react-router-dom";
 
 
 const EnrolledCourses=()=>{
   const {token}=useSelector((state)=>state.auth);
   const [EnrolledCourses,setEnrolledCourses]=useState(null);
+  const navigate=useNavigate();
 
   const getEnrolledCourses=async()=>{
     try{
       const response=await getUserEnrolledCourses(token);
+      console.log("this is response",response);
       setEnrolledCourses(response);
+      
     }
     catch(error){
       console.log("Unable to fetch Enrolled Courses");
@@ -40,7 +44,10 @@ const EnrolledCourses=()=>{
               {/* Cards Enrolled  courses ke */}
               {
                 EnrolledCourses.map((course,index)=>(
-                  <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-y-5 md:gap-y-0 md:items-center px-4 md:px-5 py-5 border-t border-richblack-700">
+                  <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-y-5 md:gap-y-0 md:items-center px-4 md:px-5 py-5 border-t border-richblack-700" onClick={() => {
+                  navigate(
+                    `/view-course/${course?._id}/section/${course.courseContent?.[0]?._id}/sub-section/${course.courseContent?.[0]?.subSection?.[0]?._id}`
+                  )}}>
                     <div className="flex items-center gap-x-4">
                       <img src={course.thumbnail} className="w-[70px] h-[55px] md:w-[75px] md:h-[55px] rounded-md object-cover"/>
                       <div>

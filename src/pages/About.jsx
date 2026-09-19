@@ -11,14 +11,14 @@ import Footer from "../components/common/Footer";
 
 const About=()=>{
   return(
-    <div className="bg-richblack-900 text-richblack-5">
+    <div className="about-page bg-richblack-900 text-richblack-5">
       {/* section 1 */}
       <section className="bg-richblack-800 pt-14 sm:pt-16 lg:pt-20 pb-16 sm:pb-20 lg:pb-20">
         <div className="w-11/12 max-w-[1200px] mx-auto">
           <header className="flex flex-col items-center text-center">
             <p className="text-richblack-300 text-base sm:text-lg mb-6 sm:mb-10">About us</p>
             <h1 className="text-3xl sm:text-4xl font-semibold leading-[1.3] max-w-[900px]">Driving Innovation in Online Education for a <HighlightText text={"Brighter Future"}/></h1>
-            <p className="mt-5 sm:mt-6 max-w-[850px] text-richblack-300 text-base sm:text-lg leading-6 sm:leading-7">Studynotion is at the forefront of driving innovation in online education. We're passionate about creating a brighter future by offering cutting-edge courses, leveraging emerging technologies, and nurturing a vibrant learning community.</p>
+            <p className="mt-5 sm:mt-6 max-w-[850px] text-richblack-300 text-base sm:text-lg leading-6 sm:leading-7">Atlas is at the forefront of driving innovation in online education. We're passionate about creating a brighter future by offering cutting-edge courses, leveraging emerging technologies, and nurturing a vibrant learning community.</p>
 
             <div className="relative z-10 flex flex-col sm:flex-row gap-y-4 sm:gap-y-0 gap-x-4 lg:gap-x-6 mx-auto mt-8 sm:mt-12 w-full justify-center -mb-24 sm:-mb-28 lg:-mb-36">
               <img className="w-full sm:w-[32%] max-w-[380px] mx-auto object-cover" src={BannerImage1}/>

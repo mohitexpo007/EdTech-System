@@ -12,7 +12,7 @@ const MyProfile=()=>{
   console.log(user?.additionalDetails)
 
   return(
-    <div className="text-richblack-5 max-w-[1000px] mx-auto pb-10 px-4 sm:px-6 lg:px-0">
+    <div className="dashboard-profile text-richblack-5 max-w-[1000px] mx-auto pb-10 px-4 sm:px-6 lg:px-0">
 
       <h1 className="text-4xl font-medium mb-8">
         My Profile
@@ -31,6 +31,7 @@ const MyProfile=()=>{
         </div>
         <IconBtn 
           text="Edit"
+          customClasses="dashboard-edit-button"
           onclick={()=>{
             navigate("/dashboard/settings")
           }}>
@@ -48,6 +49,7 @@ const MyProfile=()=>{
 
           <IconBtn 
             text="Edit"
+            customClasses="dashboard-edit-button"
             onclick={()=>{
               navigate("/dashboard/settings")
             }}>
@@ -71,6 +73,7 @@ const MyProfile=()=>{
 
           <IconBtn 
             text="Edit"
+            customClasses="dashboard-edit-button"
             onclick={()=>{
               navigate("/dashboard/settings")
             }}>

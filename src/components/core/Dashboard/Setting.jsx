@@ -80,7 +80,7 @@ const Setting = () => {
   } = profileFormData;
 
   return (
-    <div className="text-richblack-5 max-w-[1000px] mx-auto pb-10 px-4 sm:px-6 lg:px-0">
+    <div className="dashboard-settings text-richblack-5 max-w-[1000px] mx-auto pb-10 px-4 sm:px-6 lg:px-0">
 
       {/* Page Heading */}
       <h1 className="text-2xl sm:text-3xl font-semibold text-richblack-5 mb-6">

@@ -10,6 +10,7 @@ import copy from "copy-to-clipboard";
 import {toast} from "react-hot-toast";
 import { ACCOUNT_TYPE } from "../utils/constants";
 import { addToCart } from "../slices/cartSlice";
+import courseHeroBackground from "../assets/Images/category-hero-background.png";
 
 
 const CourseDetails=()=>{
@@ -130,8 +131,15 @@ const CourseDetails=()=>{
 
 
   return(
-    <>
-      <div className="relative w-full bg-richblack-800">
+    <div className="min-h-screen bg-[#050608]">
+      <div className="relative w-full bg-[#050608]">
+        <img
+          src={courseHeroBackground}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-100"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(5,6,8,.88)_0%,rgba(5,6,8,.62)_42%,rgba(5,6,8,.16)_72%,rgba(5,6,8,.48)_100%)]" />
         <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative">
           <div className="mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-center py-8 lg:mx-0 lg:justify-items-start lg:py-0 xl:max-w-[810px]">
             <div className="relative block max-h-[30rem] lg:hidden">
@@ -140,6 +148,9 @@ const CourseDetails=()=>{
             </div>
 
             <div className="z-30 my-5 flex flex-col justify-center gap-4 py-5 text-lg text-richblack-5">
+              <p className="text-sm text-richblack-200">
+                Home <span className="px-2 text-richblack-500">/</span> Catalog <span className="px-2 text-richblack-500">/</span> <span className="text-[#FFD700]">{courseDetails?.category?.name || "Course"}</span>
+              </p>
               <div>
                 <p className="text-4xl font-bold text-richblack-5 sm:text-[42px]">{courseDetails?.courseName}</p>
               </div>
@@ -147,9 +158,9 @@ const CourseDetails=()=>{
               <p className="text-richblack-200">{courseDetails?.courseDescription}</p>
 
               <div className="text-md flex flex-wrap items-center gap-2">
-                <span className="text-yellow-25">{avgReviewCount}</span>
+                <span className="text-[#FFD700]">{avgReviewCount}</span>
 
-                <div className="flex items-center gap-1 text-yellow-25">
+                <div className="flex items-center gap-1 text-[#FFD700]">
                   <span>★</span>
                   <span>★</span>
                   <span>★</span>
@@ -192,8 +203,8 @@ const CourseDetails=()=>{
             </div>
           </div>
 
-          <div className="right-[1rem] top-[60px] mx-auto hidden min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0 lg:absolute lg:block">
-            <div className="overflow-hidden rounded-lg bg-richblack-700 shadow-lg">
+          <div className="-right-[1rem] top-[240px] z-30 mx-auto hidden min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0 lg:absolute lg:block">
+            <div className="overflow-hidden rounded-lg border border-richblack-600/60 bg-[#111214]/95 shadow-[0_20px_60px_rgba(0,0,0,.55)] backdrop-blur-sm">
               <img src={courseDetails?.thumbnail} alt="Course Thumbnail" className="h-[220px] w-full object-cover"/>
 
               <div className="p-5">
@@ -218,7 +229,7 @@ const CourseDetails=()=>{
                   <p>✓ Certificate of completion</p>
                 </div>
 
-                <button className="mt-6 w-full text-center font-semibold text-yellow-50" onClick={()=>{handleShare()}}>
+                <button className="mt-6 w-full text-center font-semibold text-[#FFB000]" onClick={()=>{handleShare()}}>
                   Share
                 </button>
               </div>
@@ -255,7 +266,7 @@ const CourseDetails=()=>{
                 </div>
 
                 <div>
-                  <button className="text-yellow-25" onClick={()=>setIsActive([])}>
+                  <button className="text-[#FFB000]" onClick={()=>setIsActive([])}>
                     Collapse all sections
                   </button>
                 </div>
@@ -268,7 +279,7 @@ const CourseDetails=()=>{
                   <button className="flex w-full items-center justify-between bg-richblack-700 px-5 py-4 text-left" onClick={()=>handleActive(course?._id || index)}>
                     <span className="font-semibold text-richblack-5">{course?.sectionName}</span>
 
-                    <span className="text-sm text-yellow-25">
+                    <span className="text-sm text-[#FFD700]">
                       {course?.subSection?.length || 0} lectures
                     </span>
                   </button>
@@ -328,7 +339,7 @@ const CourseDetails=()=>{
           </div>
         </div>
       )}
-    </>
+    </div>
   )
 }
 

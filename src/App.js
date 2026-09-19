@@ -20,6 +20,8 @@ import MyCourses from "./components/core/Dashboard/MyCourses"
 import EditCourse from "./components/core/Dashboard/EditCourse";
 import Catalog from "./pages/Catalog";
 import CourseDetails from "./pages/CourseDetails";
+import VideoDetails from "./components/core/ViewCourse/VideoDetails";
+import ViewCourse from "./pages/ViewCourse";
 
 function App() {
   return (
@@ -51,6 +53,20 @@ function App() {
           <Route path="my-courses" element={<MyCourses/>}/>
           <Route path="edit-course/:courseId" element={<EditCourse/>}/>
         </Route>
+
+        <Route
+          element={
+            <PrivateRoute>
+              <ViewCourse />
+            </PrivateRoute>
+          }
+        >
+        <Route
+                path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
+                element={<VideoDetails />}
+              />
+        </Route>
+
 
         <Route path="*" element={<Error/>}/>
 

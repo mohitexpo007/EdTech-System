@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/Logo/Logo-Full-Light.png";
 import { Link, matchPath, useLocation } from "react-router-dom";
 import { NavbarLinks } from "../../data/navbar-links";
@@ -7,9 +7,8 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import ProfileDropdown from "../core/Auth/ProfileDropDown";
 import { apiConnector } from "../../services/apiconnector";
 import {categories} from "../../services/apis"
-import { useState } from "react";
-import { useEffect } from "react";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
+import "./Navbar.css";
 
 
 const Navbar = () => {
@@ -17,6 +16,7 @@ const Navbar = () => {
   const { user } = useSelector((state) => state.profile);
   const { totalItems } = useSelector((state) => state.cart);
   const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
 
   {/* api call to backend for loading all categories for catalog dropdown */}
   const [subLinks,setSubLinks]=useState([]);
@@ -36,6 +36,13 @@ const Navbar = () => {
   useEffect(()=>{
      fetchSublinks();
   },[])
+
+  useEffect(() => {
+    const updateNavbar = () => setIsScrolled(window.scrollY > 18);
+    updateNavbar();
+    window.addEventListener("scroll", updateNavbar, { passive: true });
+    return () => window.removeEventListener("scroll", updateNavbar);
+  }, []);
 
   {/* Dropdown timeout function */}
     const [catalogOpen, setCatalogOpen] = useState(false);
@@ -62,9 +69,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className="relative z-[100] flex h-16 items-center justify-center overflow-visible border-b-[1px] border-b-richblack-700">
+    <div className="navbar-shell">
+      <header className={`navbar-frame ${isScrolled ? "navbar-frame--scrolled" : ""}`}>
 
-      <div className="relative flex w-11/12 max-w-maxContent items-center justify-between">
+      <div className="navbar-content">
 
         {/* Logo */}
         <Link to="/">
@@ -73,12 +81,13 @@ const Navbar = () => {
             width={160}
             height={42}
             loading="lazy"
-            alt="StudyNotion"
+            alt="Atlas"
+            className="navbar-logo"
           />
         </Link>
 
         {/* Nav Links - CENTER */}
-        <nav className="absolute left-1/2 -translate-x-1/2">
+        <nav className="navbar-links">
           <ul className="flex items-center gap-x-8 text-base text-richblack-25">
 
             {NavbarLinks.map((link, index) => (
@@ -106,11 +115,11 @@ const Navbar = () => {
                             }`}
                         >
                           <div
-                            className="relative rounded-md bg-richblack-5 p-5 text-richblack-900 shadow-lg"
+                            className="navbar-catalog-dropdown relative rounded-md p-5 shadow-lg"
                           >
                             {/* Arrow */}
                             <div
-                              className="absolute -top-2 left-1/2 h-4 w-4 -translate-x-1/2 rotate-45 bg-richblack-5"
+                              className="navbar-catalog-arrow absolute -top-2 left-1/2 h-4 w-4 -translate-x-1/2 rotate-45"
                             />
 
                             {/* Categories */}
@@ -119,13 +128,13 @@ const Navbar = () => {
                                 <Link
                                   to={`/category/${subLink.name.split(" ").join("-").toLowerCase()}`}
                                   key={index}
-                                  className="relative z-10 block rounded-md px-4 py-3 text-base transition-all duration-150 hover:bg-richblack-25 hover:text-green-400"
+                                  className="navbar-catalog-link relative z-10 block rounded-md px-4 py-3 text-base transition-all duration-150"
                                 >
                                   {subLink.name}
                                 </Link>
                               ))
                             ) : (
-                              <p className="text-base">
+                                <p className="navbar-catalog-empty text-base">
                                 No categories available
                               </p>
                             )}
@@ -154,7 +163,7 @@ const Navbar = () => {
         </nav>
 
         {/* Right Side */}
-        <div className="ml-auto flex items-center gap-x-5">
+        <div className="navbar-actions">
 
           {/* Cart */}
           {user && user?.accountType !== "Instructor" && (
@@ -174,7 +183,7 @@ const Navbar = () => {
 
           {token === null && (
             <Link to="/login">
-              <button className="rounded-md border border-richblack-700 bg-richblack-800 px-4 py-2.5 text-base text-richblack-100">
+              <button className="navbar-login-button">
                 Log In
               </button>
             </Link>
@@ -182,7 +191,7 @@ const Navbar = () => {
 
           {token === null && (
             <Link to="/signup">
-              <button className="rounded-md border border-richblack-700 bg-richblack-800 px-4 py-2.5 text-base text-richblack-100">
+              <button className="navbar-signup-button">
                 Sign Up
               </button>
             </Link>
@@ -194,6 +203,7 @@ const Navbar = () => {
         </div>
 
       </div>
+      </header>
     </div>
   );
 };

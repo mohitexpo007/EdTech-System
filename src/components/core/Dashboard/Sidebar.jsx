@@ -24,8 +24,8 @@ const Sidebar=()=>{
   }
 
   return( 
-    <div className="h-full">
-      <div className="flex min-w-[222px] flex-col border-r border-r-richblack-700 h-[calc(100vh-3.5rem)] bg-richblack-800 py-10">
+    <div className="dashboard-sidebar h-full">
+      <div className="flex min-w-[222px] flex-col border-r border-r-richblack-700 h-[calc(100vh-3.5rem)] py-10">
         
         <div className="flex flex-col">
           {
