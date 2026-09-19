@@ -11,6 +11,7 @@ import {toast} from "react-hot-toast";
 import { ACCOUNT_TYPE } from "../utils/constants";
 import { addToCart } from "../slices/cartSlice";
 import courseHeroBackground from "../assets/Images/category-hero-background.png";
+import RatingStars from "../components/common/RatingStars";
 
 
 const CourseDetails=()=>{
@@ -160,13 +161,7 @@ const CourseDetails=()=>{
               <div className="text-md flex flex-wrap items-center gap-2">
                 <span className="text-[#FFD700]">{avgReviewCount}</span>
 
-                <div className="flex items-center gap-1 text-[#FFD700]">
-                  <span>★</span>
-                  <span>★</span>
-                  <span>★</span>
-                  <span>★</span>
-                  <span className="text-richblack-500">★</span>
-                </div>
+                <RatingStars Review_Count={avgReviewCount} Star_Size={20} />
 
                 <span>{`(${(courseDetails?.ratingAndReviews || courseDetails?.ratingAndReview || []).length} reviews)`}</span>
 

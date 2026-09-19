@@ -1,7 +1,6 @@
-import { FcGoogle } from "react-icons/fc"
 import { useSelector } from "react-redux"
 
-import frameImg from "../../../assets/Images/frame.png"
+import authStairsBackground from "../../../assets/Images/auth-stairs-background.png"
 import LoginForm from "./LoginForm"
 import SignupForm from "./SignupForm"
 
@@ -9,12 +8,14 @@ function Template({ title, description1, description2, image, formType }) {
   const { loading } = useSelector((state) => state.auth)
 
   return (
-    <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
+    <div className="auth-template grid min-h-[calc(100vh-3.5rem)] place-items-center">
+      <img className="auth-template__background" src={authStairsBackground} alt="" aria-hidden="true" />
       {loading ? (
-        <div className="spinner"></div>
+        <div className="spinner" />
       ) : (
-        <div className="mx-auto flex w-11/12 max-w-maxContent flex-col-reverse justify-between gap-y-12 py-12 md:flex-row md:gap-y-0 md:gap-x-12">
-          <div className="mx-auto w-11/12 max-w-[450px] md:mx-0">
+        <div className="auth-template__shell mx-auto flex w-11/12 max-w-maxContent py-12">
+          <div className="auth-template__form mx-auto w-11/12 max-w-[450px] md:mx-0">
+            <div className="auth-template__eyebrow">Welcome back</div>
             <h1 className="text-[1.875rem] font-semibold leading-[2.375rem] text-richblack-5">
               {title}
             </h1>
@@ -25,23 +26,6 @@ function Template({ title, description1, description2, image, formType }) {
               </span>
             </p>
             {formType === "signup" ? <SignupForm /> : <LoginForm />}
-          </div>
-          <div className="relative mx-auto w-11/12 max-w-[450px] md:mx-0">
-            <img
-              src={frameImg}
-              alt="Pattern"
-              width={558}
-              height={504}
-              loading="lazy"
-            />
-            <img
-              src={image}
-              alt="Students"
-              width={558}
-              height={504}
-              loading="lazy"
-              className="absolute -top-4 right-4 z-10"
-            />
           </div>
         </div>
       )}
