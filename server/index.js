@@ -29,7 +29,9 @@ app.use(cookieParser());
 app.use(
   cors({
     //jo bhi request frontend se aa rhi
-    origin:"http://localhost:3000",
+    origin:["http://localhost:3000",
+      "https://ed-tech-system-9q3c-roan.vercel.app"
+    ],
     credentials:true
   })
 )
