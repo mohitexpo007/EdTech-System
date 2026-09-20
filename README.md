@@ -6,7 +6,8 @@
 
 A full-stack learning management platform built with the MERN stack, designed to provide a complete ecosystem for students, instructors, and administrators.
 
-<img width="1536" height="1024" alt="ChatGPT Image Sep 21, 2026, 02_03_40 AM" src="https://github.com/user-attachments/assets/59586155-30f7-4df0-a5a8-d7329d55ebb6" />
+<img width="1536" height="1024" alt="ChatGPT Image Sep 21, 2026, 02_11_28 AM" src="https://github.com/user-attachments/assets/ad877861-457e-4864-a71d-1cfd5e737be3" />
+
 
 <br/>
 
