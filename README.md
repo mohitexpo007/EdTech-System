@@ -1,31 +1,135 @@
-# React & Tailwind CSS Starter Pack
+# Atlas — Modern EdTech Learning Platform
 
-This is a starter pack for creating React projects with Tailwind CSS configured. It uses React version **18.2** and Tailwind CSS version **3.2**.
+<div align="center">
 
-## Usage
+### Learn. Build. Grow.
 
-This starter pack includes a basic setup for using **Tailwind CSS with React**. To start building your own components and styles, follow these steps:
+A full-stack learning management platform built with the MERN stack, designed to provide a complete ecosystem for students, instructors, and administrators.
 
-1. Clone the repository to your local machine.
-    ```sh
-    git clone https://github.com/thepranaygupta/react-tailwind-css-starter-pack.git
-    ```
+<br/>
 
-1. Install the required packages.
-    ```sh
-    cd react-tailwind-css-starter-pack
-    npm install
-    ```
+[![React](https://img.shields.io/badge/React-18.2-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
+[![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Database-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Razorpay](https://img.shields.io/badge/Razorpay-Payments-3395FF?style=for-the-badge)](https://razorpay.com/)
 
-1. Start the development server.
-    ```sh
-    npm start
-    ```
-1. Open the project in your browser at [`http://localhost:3000`](http://localhost:3000) to view your project.
-1. Create your React components and add your styles using Tailwind classes. You can also create new CSS files and import them into your components.
+</div>
 
-The project is set up to use `postcss-cli` to process your CSS files. You can add your own `tailwind.config.js` file to customize your Tailwind setup.
+---
 
-## Contributing
+## 📖 Overview
 
-Contributions are welcome! If you have any suggestions or find any issues, please feel free to open an issue or a pull request.
+**Atlas** is a full-stack EdTech and Learning Management System designed to connect learners with structured, high-quality educational content.
+
+The platform provides a complete learning workflow:
+
+- Students can discover and purchase courses
+- Instructors can create and manage courses
+- Students can watch video lectures and track their progress
+- Secure authentication and role-based authorization protect platform resources
+- Razorpay enables online course payments
+- Students can rate and review courses
+- Instructors can monitor course enrollment and revenue
+- Cloudinary handles media storage
+- Email and OTP-based workflows support authentication and account recovery
+
+The project was built to simulate a production-oriented EdTech platform rather than a simple course listing application.
+
+---
+
+## ✨ Key Features
+
+### 👨‍🎓 Student Features
+
+- User registration and login
+- OTP-based verification
+- Secure authentication
+- Browse available courses
+- Search and explore course categories
+- View complete course details
+- Course purchasing
+- Razorpay payment integration
+- Enrolled course dashboard
+- Video-based learning
+- Course progress tracking
+- Completed lecture tracking
+- Course ratings and reviews
+- Profile management
+- Password management
+- Cart functionality
+- Wishlist / saved learning workflow
+- Responsive learning interface
+
+---
+
+### 👨‍🏫 Instructor Features
+
+- Instructor dashboard
+- Create new courses
+- Edit existing courses
+- Course category management
+- Course pricing
+- Course thumbnail upload
+- Section creation
+- Sub-section / lecture creation
+- Video lecture management
+- Course publishing workflow
+- Course editing workflow
+- Student enrollment information
+- Course performance information
+- Revenue-related analytics
+- Course management interface
+
+---
+
+### 🛡️ Authentication & Authorization
+
+Atlas implements protected authentication and role-based authorization.
+
+Supported roles include:
+
+- Student
+- Instructor
+- Admin
+
+Authentication is handled using:
+
+- JWT
+- Secure authentication middleware
+- Password hashing with bcrypt
+- Protected routes
+- Role-based authorization
+- OTP verification
+- Password reset workflow
+
+The backend validates authenticated requests before allowing access to protected resources.
+
+---
+
+### 💳 Payment System
+
+Atlas integrates **Razorpay** for online course purchases.
+
+The payment workflow includes:
+
+```text
+Student
+   │
+   ▼
+Select Course
+   │
+   ▼
+Create Payment Order
+   │
+   ▼
+Razorpay Checkout
+   │
+   ▼
+Payment Verification
+   │
+   ▼
+Course Enrollment
+   │
+   ▼
+Student Dashboard
