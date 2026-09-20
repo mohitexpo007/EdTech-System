@@ -1,5 +1,4 @@
 import ContactUsForm from "../../common/ContactPage/ContactUsForm";
-import Footer from "../../common/Footer";
 
 const ContactFormSection=()=>{
   return(

@@ -18,7 +18,7 @@ const Navbar = () => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
 
-  {/* api call to backend for loading all categories for catalog dropdown */}
+  //api call to backend for loading all categories for catalog dropdown */}
   const [subLinks,setSubLinks]=useState([]);
 
 
@@ -44,7 +44,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", updateNavbar);
   }, []);
 
-  {/* Dropdown timeout function */}
+  //Dropdown timeout function */}
     const [catalogOpen, setCatalogOpen] = useState(false);
     const closeTimeout = React.useRef(null);
 
@@ -63,7 +63,7 @@ const Navbar = () => {
     };
 
 
-  {/*Route matching of navbar icons to color function */}
+  //Route matching of navbar icons to color function */}
   const matchRoute = (route) => {
     return matchPath({ path: route }, location.pathname);
   };

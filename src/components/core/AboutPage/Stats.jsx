@@ -1,4 +1,4 @@
-{/* temporary data */}
+//temporary data */}
 const Stats=[
   {count:"5k",label:"Active Students"},
   {count:"10+",label:"Mentors"},

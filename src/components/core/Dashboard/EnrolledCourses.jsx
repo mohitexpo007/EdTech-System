@@ -10,19 +10,19 @@ const EnrolledCourses=()=>{
   const [EnrolledCourses,setEnrolledCourses]=useState(null);
   const navigate=useNavigate();
 
-  const getEnrolledCourses=async()=>{
-    try{
-      const response=await getUserEnrolledCourses(token);
-      console.log("this is response",response);
-      setEnrolledCourses(response);
-      
-    }
-    catch(error){
-      console.log("Unable to fetch Enrolled Courses");
-    }
-  }
-
   useEffect(()=>{
+    const getEnrolledCourses=async()=>{
+      try{
+        const response=await getUserEnrolledCourses(token);
+        console.log("this is response",response);
+        setEnrolledCourses(response);
+        
+      }
+      catch(error){
+        console.log("Unable to fetch Enrolled Courses");
+      }
+    }
+
     getEnrolledCourses();
   },[token]);
 
