@@ -27,7 +27,6 @@ const CourseInformationForm=()=>{
   const [loading,setLoading]=useState(false)
   const [courseCategories,setCourseCategories]=useState([]);
   const{token}=useSelector((state)=>state.auth)
-  const { step } = useSelector((state) => state.course)
 
   useEffect(()=>{
     const getCategories=async()=>{
@@ -51,7 +50,18 @@ const CourseInformationForm=()=>{
     }
 
     getCategories();
-  },[]);
+  },[
+    course.category,
+    course.courseDescription,
+    course.courseName,
+    course.instructions,
+    course.price,
+    course.tag,
+    course.thumbnail,
+    course.whatYouWillLearn,
+    editCourse,
+    setValue,
+  ]);
 
   const isFormUpdated=()=>{
     const currentValues=getValues();

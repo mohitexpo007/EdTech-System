@@ -49,7 +49,7 @@ const CourseDetails=()=>{
   useEffect(()=>{
     const count=GetAvgRating(courseDetails?.ratingAndReview) || 0;
     setAvgReviewCount(count);
-  },[courseData])
+  },[courseData,courseDetails?.ratingAndReview])
 
 
   useEffect(()=>{

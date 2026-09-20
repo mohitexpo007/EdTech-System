@@ -18,10 +18,10 @@ const PublishCourse=()=>{
 
   //page render hote hi check kro if course ka status already published hai to public true krdo
   useEffect(()=>{
-    if(course?.status === COURSE_STATUS.PUBLISHED){
-      setValue("public",true);
-    }
-  })
+  if(course?.status === COURSE_STATUS.PUBLISHED){
+    setValue("public",true);
+  }
+  }, [course?.status, setValue])
 
   const goBack=()=>{
     dispatch(setStep(2));
@@ -33,7 +33,7 @@ const PublishCourse=()=>{
   }
 
   const handleCoursePublish=async()=>{
-    if(course?.status===COURSE_STATUS.PUBLISHED && getValues("public")===true ||
+    if((course?.status===COURSE_STATUS.PUBLISHED && getValues("public")===true) ||
     (course.status===COURSE_STATUS.DRAFT && getValues("public")===false)
     ){
       //no updation in form
