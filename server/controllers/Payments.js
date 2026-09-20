@@ -4,7 +4,6 @@ const User=require("../models/User");
 const mailSender=require("../utils/mailSender");
 const {courseEnrollmentEmail}=require("../mail/templates/courseEnrollmentEmail");
 const {default:mongoose} = require("mongoose");
-const { FaLastfm } = require("react-icons/fa");
 const crypto = require("crypto");
 const { paymentSuccessEmail } = require("../templates/paymentSuccessEmail");
 
