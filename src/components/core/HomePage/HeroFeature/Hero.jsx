@@ -75,7 +75,7 @@ export default function Hero() {
           <motion.h1 {...reveal(0.1)}>Empower Your Future<br />with <span className="orange-text">World-Class</span><br />Online Learning</motion.h1>
           <motion.p {...reveal(0.2)}>Atlas brings high-quality education within everyone&apos;s reach. Learn from expert instructors and build the skills you need for your future.</motion.p>
           <motion.div className="hero-buttons" {...reveal(0.3)}>
-            <Link className="primary-button" to="/category/all">Explore Courses <FaArrowRight /></Link>
+            <Link className="primary-button" to="/category/web-dev">Explore Courses <FaArrowRight /></Link>
             <Link className="secondary-button" to="/about">Learn More</Link>
           </motion.div>
         </div>

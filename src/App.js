@@ -24,6 +24,7 @@ import VideoDetails from "./components/core/ViewCourse/VideoDetails";
 import ViewCourse from "./pages/ViewCourse";
 import InstructorChart from "./components/core/Dashboard/InstructorDashboard/InstructorChart";
 import Contact from "./pages/Contact";
+import OpenRoute from "./components/core/Auth/OpenRoute"
 
 function App() {
   return (
@@ -31,9 +32,25 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/contact" element={<Contact/>}/>
-        <Route path="/signup" element={<Signup/>}/>
+        <Route
+          path="/login"
+          element={
+            <OpenRoute>
+              <Login />
+            </OpenRoute>
+          }
+        />
+
+        <Route path="/contact" element={<Contact />} />
+
+        <Route
+          path="/signup"
+          element={
+            <OpenRoute>
+              <Signup />
+            </OpenRoute>
+          }
+        />
         <Route path="/forgot-password" element={<ForgotPassword/>}/>
         <Route path="/update-password/:id" element={<UpdatePassword/>}/>
         <Route path="/verify-email" element={<VerifyEmail/>}/>
