@@ -30,7 +30,7 @@ app.use(
   cors({
     //jo bhi request frontend se aa rhi
     origin:["http://localhost:3000",
-      "https://atlas-livid-iota-48.vercel.app/"
+      "https://atlas-livid-iota-48.vercel.app"
     ],
     credentials:true
   })
