@@ -6,6 +6,8 @@
 
 A full-stack learning management platform built with the MERN stack, designed to provide a complete ecosystem for students, instructors, and administrators.
 
+<img width="1536" height="1024" alt="ChatGPT Image Sep 21, 2026, 02_03_40 AM" src="https://github.com/user-attachments/assets/59586155-30f7-4df0-a5a8-d7329d55ebb6" />
+
 <br/>
 
 [![React](https://img.shields.io/badge/React-18.2-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
@@ -15,6 +17,9 @@ A full-stack learning management platform built with the MERN stack, designed to
 [![Razorpay](https://img.shields.io/badge/Razorpay-Payments-3395FF?style=for-the-badge)](https://razorpay.com/)
 
 </div>
+
+Frontend-https://atlas-livid-iota-48.vercel.app/
+Backend-https://atlas-backend-8qo4.onrender.com/
 
 ---
 
