@@ -24,7 +24,7 @@ const EnrolledCourses=()=>{
 
   useEffect(()=>{
     getEnrolledCourses();
-  },[]);
+  },[getEnrolledCourses]);
 
 
   return(
@@ -49,7 +49,7 @@ const EnrolledCourses=()=>{
                     `/view-course/${course?._id}/section/${course.courseContent?.[0]?._id}/sub-section/${course.courseContent?.[0]?.subSection?.[0]?._id}`
                   )}}>
                     <div className="flex items-center gap-x-4">
-                      <img src={course.thumbnail} className="h-[55px] w-[70px] rounded-md object-cover transition-transform duration-300 group-hover:scale-105 md:h-[55px] md:w-[75px]"/>
+                      <img src={course.thumbnail} alt="Course" className="h-[55px] w-[70px] rounded-md object-cover transition-transform duration-300 group-hover:scale-105 md:h-[55px] md:w-[75px]"/>
                       <div>
                         <p className="text-base md:text-lg font-semibold text-richblack-5">{course.courseName}</p>
                         <p className="text-sm md:text-base text-richblack-300 mt-1">{course.courseDescription}</p>

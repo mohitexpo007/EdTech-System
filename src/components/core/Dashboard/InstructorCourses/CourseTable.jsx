@@ -64,6 +64,7 @@ export default function CoursesTable({courses,setCourses}){
                   <Td className="w-[58%] px-7 py-7 align-middle">
                     <img
                       src={course?.thumbnail}
+                      alt="Course"
                       className="mr-6 inline-block h-[165px] w-[245px] rounded-lg object-cover align-middle"
                     />
                     <div className="inline-flex max-w-[calc(100%-275px)] flex-col gap-3 align-middle">
