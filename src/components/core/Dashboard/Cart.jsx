@@ -86,7 +86,7 @@ export default function Cart(){
       )}
 
       {/* checkout and total amount */}
-      <div className="w-full max-w-[1050px] lg:max-w-[275px] lg:ml-auto mt-5 rounded-md border border-richblack-700 bg-richblack-800 p-6 -translate-y-96">
+      <div className="w-full max-w-[1050px] lg:max-w-[275px] lg:ml-auto mt-5 rounded-md border border-richblack-700 bg-richblack-800 p-6 lg:-translate-y-32">
         
         <p className="text-base text-richblack-300 mb-2">Total:</p>
         <p className="text-2xl font-semibold text-yellow-50 mb-5">Rs {total}</p>

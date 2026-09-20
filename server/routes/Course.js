@@ -21,6 +21,8 @@ const{createRating,getAverageRating,getAllRating}=require("../controllers/Rating
 //Importing Middlewares
 const{auth,isInstructor,isStudent,isAdmin}=require("../middlewares/auth");
 
+const{updateCourseProgress,getCourseProgress}=require("../controllers/courseProgress");
+
 
 //routes
 
@@ -51,6 +53,7 @@ router.get("/getInstructorCourses",auth,isInstructor,getInstructorCourses);
 router.delete("/deleteCourse",auth,isInstructor,deleteCourse);
 //edit course ke lie full course details
 router.post("/getFullCourseDetails",auth,getFullCourseDetails)
+router.post("/updateCourseProgress",auth,updateCourseProgress)
 
 
 //Category can only be created by Admin
@@ -63,6 +66,8 @@ router.post("/getCategoryPageDetails",categoryPageDetails);
 router.post("/createRating",auth,isStudent,createRating);
 router.get("/getAverageRating",getAverageRating);
 router.get("/getReviews",getAllRating);
+
+router.post("/getCourseProgress",auth,getCourseProgress);
 
 
 module.exports=router

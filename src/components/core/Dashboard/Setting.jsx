@@ -123,7 +123,7 @@ const Setting = () => {
 
               <button
                 onClick={onChangeHandler}
-                className="rounded-md bg-richblack-700 px-5 py-2 text-sm font-semibold text-richblack-100 hover:bg-richblack-600 w-full sm:w-auto"
+                className="w-full rounded-xl border border-white/[0.08] bg-white/[0.035] px-5 py-2.5 text-sm font-semibold text-[#d8d8d8] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-[#ff6b00]/25 hover:bg-white/[0.06] hover:text-white hover:shadow-[0_8px_25px_rgba(255,107,0,0.06)] sm:w-auto"
               >
                 Upload
               </button>
@@ -305,7 +305,7 @@ const Setting = () => {
           <div className="flex flex-col sm:flex-row justify-end gap-3 mb-2 mt-8 sm:mt-10">
 
             <button
-              className="rounded-md bg-richblack-700 px-5 py-2 text-sm font-semibold text-richblack-100 hover:bg-richblack-600 w-full sm:w-auto"
+              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.035] px-5 py-2.5 text-sm font-semibold text-[#d8d8d8] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-[#ff6b00]/25 hover:bg-white/[0.06] hover:text-white hover:shadow-[0_8px_25px_rgba(255,107,0,0.06)] sm:w-auto"
               onClick={() => navigate(-1)}
             >
               Cancel

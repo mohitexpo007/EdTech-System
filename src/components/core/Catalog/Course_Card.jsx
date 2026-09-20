@@ -16,7 +16,7 @@ export default function Course_Card({course, Height}){
       {/* link tab because each course is clickable */}
       <Link to={`/courses/${course._id}`}>
 
-        <div className="flex h-full w-full flex-col gap-4 rounded-xl bg-richblack-800 p-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-[0px_8px_25px_rgba(0,0,0,0.35)]">
+        <div className="course-card-glass flex h-full w-full flex-col gap-4 rounded-xl p-4 transition-all duration-300 hover:-translate-y-1 ">
 
           <div className="w-full overflow-hidden rounded-xl">
             <img 

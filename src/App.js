@@ -22,6 +22,8 @@ import Catalog from "./pages/Catalog";
 import CourseDetails from "./pages/CourseDetails";
 import VideoDetails from "./components/core/ViewCourse/VideoDetails";
 import ViewCourse from "./pages/ViewCourse";
+import InstructorChart from "./components/core/Dashboard/InstructorDashboard/InstructorChart";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -30,6 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/contact" element={<Contact/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/forgot-password" element={<ForgotPassword/>}/>
         <Route path="/update-password/:id" element={<UpdatePassword/>}/>
@@ -52,6 +55,7 @@ function App() {
 
           <Route path="my-courses" element={<MyCourses/>}/>
           <Route path="edit-course/:courseId" element={<EditCourse/>}/>
+          <Route path="instructor" element={<InstructorChart/>}/>
         </Route>
 
         <Route

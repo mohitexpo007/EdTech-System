@@ -66,3 +66,12 @@ export const courseEndpoints = {
 export const catalogData = {
   CATALOGPAGEDATA_API: BASE_URL + "/course/getCategoryPageDetails",
 }
+
+// RATINGS AND REVIEWS
+export const ratingsEndpoints = {
+  REVIEWS_DETAILS_API: BASE_URL + "/course/getReviews",
+}
+
+export const completedlecEndpoints = {
+  GET_COMPLETED_LECTURES_API: BASE_URL + "/course/getCourseProgress",
+}

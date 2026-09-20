@@ -11,6 +11,7 @@ import InstructorFeature from '../components/core/HomePage/InstructorFeature/Ins
 import Footer from '../components/common/Footer';
 import ExploreMore from '../components/core/HomePage/ExploreMore';
 import Hero from '../components/core/HomePage/HeroFeature/Hero';
+import ReviewSlider from '../components/common/ReviewSlider';
 
 const Home = () => {
   return (
@@ -172,6 +173,7 @@ const Home = () => {
         </h2>
 
         {/* Review Slider here */}
+        <ReviewSlider/>
 
       </div>
 

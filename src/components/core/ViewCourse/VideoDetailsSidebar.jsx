@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react"
 import { BsChevronDown } from "react-icons/bs"
 import { IoIosArrowBack } from "react-icons/io"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
 
 import IconBtn from "../../common/IconBtn"
+import { completedlecEndpoints } from "../../../services/apis"
+import { apiConnector } from "../../../services/apiconnector"
+import { setCompletedLectures } from "../../../slices/viewCourseSlice"
 
 export default function VideoDetailsSidebar({ setReviewModal }) {
   const [activeStatus, setActiveStatus] = useState("")
   const [videoBarActive, setVideoBarActive] = useState("")
   const navigate = useNavigate()
   const location = useLocation()
-  const { sectionId, subSectionId } = useParams()
+  const { courseId, sectionId, subSectionId } = useParams()
+
   const {
     courseSectionData,
     courseEntireData,
@@ -19,19 +23,72 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
     completedLectures,
   } = useSelector((state) => state.viewCourse)
 
+  const dispatch = useDispatch()
+
+  const { GET_COMPLETED_LECTURES_API } = completedlecEndpoints
+  const { token } = useSelector((state) => state.auth)
+
+  useEffect(() => {
+    const getCompletedLec = async () => {
+      try {
+        const result = await apiConnector(
+          "POST",
+          GET_COMPLETED_LECTURES_API,
+          {
+            courseId: courseId,
+          },
+          {
+            Authorization: `Bearer ${token}`,
+          }
+        )
+
+        if (result?.data?.success) {
+          console.log("Completed lec api result", result)
+
+          const completedVideos =
+            result.data.courseProgress?.completedVideos || []
+
+          const completedVideoIds = completedVideos.map((id) =>
+            String(id)
+          )
+
+          console.log("Completed video IDs:", completedVideoIds)
+
+          dispatch(setCompletedLectures(completedVideoIds))
+        } else {
+          dispatch(setCompletedLectures([]))
+        }
+      } catch (error) {
+        console.log("Error in completed lectures api", error)
+      }
+    }
+
+    if (courseId && token) {
+      getCompletedLec()
+    }
+  }, [courseId, token, dispatch, GET_COMPLETED_LECTURES_API])
+
+  useEffect(() => {
+    console.log("Completed lectures from Redux:", completedLectures)
+  }, [completedLectures])
+
   useEffect(() => {
     ;(() => {
       if (!courseSectionData.length) return
+
       const currentSectionIndx = courseSectionData.findIndex(
         (data) => data._id === sectionId
       )
+
       const currentSubSectionIndx = courseSectionData?.[
         currentSectionIndx
       ]?.subSection.findIndex((data) => data._id === subSectionId)
+
       const activeSubSectionId =
         courseSectionData[currentSectionIndx]?.subSection?.[
           currentSubSectionIndx
         ]?._id
+
       setActiveStatus(courseSectionData?.[currentSectionIndx]?._id)
       setVideoBarActive(activeSubSectionId)
     })()
@@ -75,7 +132,13 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
                   <div
                     className="h-full rounded-full bg-[#ff6b00] shadow-[0_0_8px_rgba(255,107,0,0.45)] transition-all duration-500"
                     style={{
-                      width: `${totalNoOfLectures ? (completedLectures?.length / totalNoOfLectures) * 100 : 0}%`,
+                      width: `${
+                        totalNoOfLectures
+                          ? (completedLectures?.length /
+                              totalNoOfLectures) *
+                            100
+                          : 0
+                      }%`,
                     }}
                   ></div>
                 </div>
@@ -113,7 +176,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
 
                   <span
                     className={`${
-                      activeStatus === course?.sectionName
+                      activeStatus === course?._id
                         ? "rotate-0"
                         : "rotate-180"
                     } text-[#ff6b00] transition-all duration-500`}
@@ -143,7 +206,9 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
                     >
                       <input
                         type="checkbox"
-                        checked={completedLectures.includes(topic?._id)}
+                        checked={completedLectures.some(
+                          (id) => String(id) === String(topic?._id)
+                        )}
                         onChange={() => {}}
                         className="h-4 w-4 accent-[#ff6b00]"
                       />
@@ -181,7 +246,11 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
               <div
                 className="h-full rounded-full bg-[#ff6b00] shadow-[0_0_8px_rgba(255,107,0,0.45)]"
                 style={{
-                  width: `${totalNoOfLectures ? (completedLectures?.length / totalNoOfLectures) * 100 : 0}%`,
+                  width: `${
+                    totalNoOfLectures
+                      ? (completedLectures?.length / totalNoOfLectures) * 100
+                      : 0
+                  }%`,
                 }}
               ></div>
             </div>

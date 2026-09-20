@@ -44,12 +44,12 @@ const EnrolledCourses=()=>{
               {/* Cards Enrolled  courses ke */}
               {
                 EnrolledCourses.map((course,index)=>(
-                  <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-y-5 md:gap-y-0 md:items-center px-4 md:px-5 py-5 border-t border-richblack-700" onClick={() => {
+                  <div key={index} className="group grid cursor-pointer grid-cols-1 gap-y-5 border-t border-richblack-700 px-4 py-5 transition-all duration-300 hover:-translate-y-1 hover:bg-richblack-800 hover:shadow-[0_10px_28px_rgba(0,0,0,0.28)] md:grid-cols-3 md:items-center md:gap-y-0 md:px-5" onClick={() => {
                   navigate(
                     `/view-course/${course?._id}/section/${course.courseContent?.[0]?._id}/sub-section/${course.courseContent?.[0]?.subSection?.[0]?._id}`
                   )}}>
                     <div className="flex items-center gap-x-4">
-                      <img src={course.thumbnail} className="w-[70px] h-[55px] md:w-[75px] md:h-[55px] rounded-md object-cover"/>
+                      <img src={course.thumbnail} className="h-[55px] w-[70px] rounded-md object-cover transition-transform duration-300 group-hover:scale-105 md:h-[55px] md:w-[75px]"/>
                       <div>
                         <p className="text-base md:text-lg font-semibold text-richblack-5">{course.courseName}</p>
                         <p className="text-sm md:text-base text-richblack-300 mt-1">{course.courseDescription}</p>

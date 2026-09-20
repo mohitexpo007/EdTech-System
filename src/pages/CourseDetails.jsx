@@ -188,9 +188,18 @@ const CourseDetails=()=>{
             <div className="flex w-full flex-col gap-4 border-y border-y-richblack-500 py-4 lg:hidden">
               <p className="space-x-3 pb-4 text-3xl font-semibold text-richblack-5">Rs. {courseDetails?.price}</p>
 
-              <button className="w-full rounded-lg bg-yellow-50 px-6 py-3 font-semibold text-richblack-900" onClick={handleBuyCourse}>
+            <button
+              className="group relative w-full overflow-hidden rounded-xl border border-[#ff6b00]/40 bg-[#ff6b00] px-6 py-3 font-semibold text-black shadow-[0_8px_30px_rgba(255,107,0,0.12)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#ff7417] hover:shadow-[0_12px_35px_rgba(255,107,0,0.2)] active:translate-y-0"
+              onClick={handleBuyCourse}
+            >
+              <span className="relative z-10">
                 {paymentLoading ? "Processing..." : "Buy Now"}
-              </button>
+              </span>
+
+              {!paymentLoading && (
+                <span className="absolute inset-0 -translate-x-full bg-white/20 transition-transform duration-500 group-hover:translate-x-full" />
+              )}
+            </button>
 
               <button className="w-full rounded-lg bg-richblack-900 px-6 py-3 font-semibold text-richblack-5">
                 Add to Cart
@@ -205,7 +214,7 @@ const CourseDetails=()=>{
               <div className="p-5">
                 <h2 className="mb-5 text-3xl font-bold text-richblack-5">Rs. {courseDetails?.price}</h2>
 
-                <button className="mb-3 w-full rounded-lg bg-yellow-50 px-4 py-3 font-semibold text-richblack-900" onClick={handleBuyCourse}>
+                <button className="group relative w-full overflow-hidden rounded-xl border border-[#ff6b00]/40 bg-[#ff6b00] px-6 py-3 font-semibold text-black shadow-[0_8px_30px_rgba(255,107,0,0.12)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#ff7417] hover:shadow-[0_12px_35px_rgba(255,107,0,0.2)] active:translate-y-0 py-3 px-4" onClick={handleBuyCourse}>
                   {paymentLoading ? "Processing..." : "Buy Now"}
                 </button>
 

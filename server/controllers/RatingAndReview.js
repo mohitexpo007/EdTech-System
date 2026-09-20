@@ -119,32 +119,33 @@ exports.getAverageRating=async(req,res)=>{
 
 
 //getAllRating
-exports.getAllRating=async(req,res)=>{
-  try{
+exports.getAllRating = async (req, res) => {
+  try {
 
-    //direct all reviews from db
-    const allReviews=(await RatingAndReview.find({})).toSorted({rating:"desc"})
-    .populate({
-      path:"user",
-      //only below fields required
-      select:"firstName lastName email image"
-    })
-    .populate({
-      path:"course",
-      select:"courseName"
-    }).exec();
+    // direct all reviews from db
+    const allReviews = await RatingAndReview.find({})
+      .sort({ rating: -1 })
+      .populate({
+        path: "user",
+        // only below fields required
+        select: "firstName lastName email image"
+      })
+      .populate({
+        path: "course",
+        select: "courseName"
+      })
+      .exec();
 
     return res.status(200).json({
-      success:true,
-      message:"All reviews fetched successfully",
-      data:allReviews
-    })
+      success: true,
+      message: "All reviews fetched successfully",
+      data: allReviews
+    });
 
-  }
-  catch(error){
+  } catch (error) {
     return res.status(500).json({
-      success:false,
-      message:error.message
-    })
+      success: false,
+      message: error.message
+    });
   }
 }

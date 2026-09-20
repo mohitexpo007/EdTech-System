@@ -12,7 +12,10 @@ const IconBtn=({
     disabled={disabled}
     onClick={onclick}
     type={type}
-    className={`flex items-center justify-center gap-x-2 rounded-md bg-yellow-50 px-5 py-3 text-[16px] font-semibold text-richblack-900 shadow-[0_3px_0_0_#b88600] hover:scale-[0.98] transition-all duration-200 ${customClasses || ""}`}
+    className={`group relative flex items-center justify-center gap-x-2 overflow-hidden rounded-xl border border-[#ff6b00]/40 bg-[#ff6b00] px-5 py-3 text-[16px] font-semibold text-black shadow-[0_8px_30px_rgba(255,107,0,0.12)] transition-all duration-300 ${
+      !disabled &&
+      "hover:-translate-y-0.5 hover:bg-[#ff7417] hover:shadow-[0_12px_35px_rgba(255,107,0,0.2)] active:translate-y-0"
+    } ${customClasses || ""}`}
     >
       {
         children ? (
