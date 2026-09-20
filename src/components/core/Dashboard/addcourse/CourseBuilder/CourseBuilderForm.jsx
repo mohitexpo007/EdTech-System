@@ -15,6 +15,7 @@ const CourseBuilderForm=()=>{
   const[editSectionName,setEditSectionName]=useState(null);
   const{course}=useSelector((state)=>state.course);
   const{token}=useSelector((state)=>state.auth);
+const [setLoading] = useState(false);
 
   const dispatch=useDispatch();
 
