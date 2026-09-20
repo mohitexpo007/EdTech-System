@@ -61,7 +61,6 @@ const UpdatePassword=()=>{
               <p className="text-richblack-5 text-[14px]">New Password<span className="text-pink-200"> *</span></p>
               <input className="w-full rounded-md bg-richblack-800 border border-richblack-700 px-4 py-3 text-richblack-5 outline-none focus:border-yellow-50" required type={showConfirmPassword ? "text":"password"} name='confirmPassword' value={confirmPassword} onChange={handleOnChange} placeholder="Confirm Password" />
 
-              //eye icon
               <span className="absolute right-4 bottom-3 cursor-pointer text-richblack-200 -translate-y-9" onClick={()=>setShowConfirmPassword((prev)=>!prev)}>
                 {
                   showConfirmPassword ? <AiFillEyeInvisible/> : <AiFillEye/>
