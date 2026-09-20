@@ -24,7 +24,7 @@ const EnrolledCourses=()=>{
 
   useEffect(()=>{
     getEnrolledCourses();
-  },[getEnrolledCourses]);
+  },[token]);
 
 
   return(

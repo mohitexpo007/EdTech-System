@@ -1,4 +1,4 @@
-import Course_Card from "../Course_Card";
+import CourseCard from "../Course_Card";
 import CourseSlider from "../CourseSlider";
 import categoryHeroNetwork from "../../../../assets/Images/category-hero-network.png";
 import "./CategoryFeature.css";
@@ -56,7 +56,7 @@ export default function CategoryFeature({ catalogPageData }) {
       <section className="category-feature__courses category-feature__frequently-bought">
         <h2 className="category-feature__plain-heading">Frequently Bought</h2>
         <div className="category-feature__card-grid">
-          {catalogPageData?.data?.mostSellingCourses?.slice(0, 4).map((course) => <Course_Card course={course} key={course._id} Height="h-[250px]" />)}
+          {catalogPageData?.data?.mostSellingCourses?.slice(0, 4).map((course) => <CourseCard course={course} key={course._id} Height="h-[250px]" />)}
         </div>
       </section>
     </main>

@@ -44,7 +44,7 @@ export default function Cart(){
           cart.map((course,index)=>(
             <div className="grid grid-cols-1 md:grid-cols-[1fr_130px] gap-5 md:gap-8 py-6 border-b border-richblack-700">
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <img className="w-full sm:w-[250px] h-[150px] sm:h-[145px] rounded-md object-cover" src={course?.thumbnail}/>
+                <img className="w-full sm:w-[250px] h-[150px] sm:h-[145px] rounded-md object-cover" src={course?.thumbnail} alt=""/>
                 <div className="flex-1">
                   <p className="text-lg font-semibold text-richblack-5">{course?.courseName}</p>
                   <p className="text-base text-richblack-400 mt-2">{course?.category?.name}</p>

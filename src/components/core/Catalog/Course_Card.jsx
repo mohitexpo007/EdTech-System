@@ -3,7 +3,7 @@ import RatingStars from "../../common/RatingStars";
 import GetAvgRating from "../../../utils/avgRating";
 import { Link } from "react-router-dom";
 
-export default function Course_Card({course, Height}){ 
+export default function CourseCard({course, Height}){ 
   const [avgReviewCount,setAvgReviewCount]=useState(0);
 
   useEffect(()=>{

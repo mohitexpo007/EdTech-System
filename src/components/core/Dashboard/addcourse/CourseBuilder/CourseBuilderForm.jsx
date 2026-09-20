@@ -15,14 +15,14 @@ const CourseBuilderForm=()=>{
   const[editSectionName,setEditSectionName]=useState(null);
   const{course}=useSelector((state)=>state.course);
   const{token}=useSelector((state)=>state.auth);
-const [setLoading] = useState(false);
+  const [, setLoading] = useState(false);
 
   const dispatch=useDispatch();
 
-  {/* course edit krne ja rhe ho */}
+  // course edit krne ja rhe ho
   const goBack=()=>{
     dispatch(setStep(1));
-    {/* this time we are editing the course so courseEdit flag which is on redux is true and course is also loaded from redux store*/}
+    // this time we are editing the course so courseEdit flag which is on redux is true and course is also loaded from redux store
     dispatch(setEditCourse(true));
   }
   
@@ -31,7 +31,6 @@ const [setLoading] = useState(false);
       toast.error("Please add atleast one section");
       return;
     }
-    {/* agr kisi section ke andr subsection hai hi nhi then also error */}
     if(course.courseContent.some((section)=>section.subSection.length === 0)){
       toast.error("Please add atleast one lecture in each section")
       return
@@ -45,7 +44,7 @@ const [setLoading] = useState(false);
     setLoading(true);
     let result;
     
-    {/* if created course pr edit vala icon click kiya hota to edit krte then edit wala button show ho rha hota use click krdete */}
+    // if created course pr edit vala icon click kiya hota to edit krte then edit wala button show ho rha hota use click krdete
     if(editSectionName){
       //we are editing the section
       result=await updateSection({
