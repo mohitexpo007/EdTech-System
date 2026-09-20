@@ -21,9 +21,9 @@ const About=()=>{
             <p className="mt-5 sm:mt-6 max-w-[850px] text-richblack-300 text-base sm:text-lg leading-6 sm:leading-7">Atlas is at the forefront of driving innovation in online education. We're passionate about creating a brighter future by offering cutting-edge courses, leveraging emerging technologies, and nurturing a vibrant learning community.</p>
 
             <div className="relative z-10 flex flex-col sm:flex-row gap-y-4 sm:gap-y-0 gap-x-4 lg:gap-x-6 mx-auto mt-8 sm:mt-12 w-full justify-center -mb-24 sm:-mb-28 lg:-mb-36">
-              <img className="w-full sm:w-[32%] max-w-[380px] mx-auto object-cover" src={BannerImage1}/>
-              <img className="w-full sm:w-[32%] max-w-[380px] mx-auto object-cover" src={BannerImage2}/>
-              <img className="w-full sm:w-[32%] max-w-[380px] mx-auto object-cover" src={BannerImage3}/>
+              <img className="w-full sm:w-[32%] max-w-[380px] mx-auto object-cover" src={BannerImage1} alt="Atlas learning platform"/>
+              <img className="w-full sm:w-[32%] max-w-[380px] mx-auto object-cover" src={BannerImage2} alt="Atlas learning platform"/>
+              <img className="w-full sm:w-[32%] max-w-[380px] mx-auto object-cover" src={BannerImage3} alt="Atlas learning platform"/>
             </div>
           </header>
         </div> 
@@ -57,7 +57,7 @@ const About=()=>{
 
             {/* founding story right box */}
             <div className="w-full lg:w-1/2 flex justify-center">
-              <img className="w-full max-w-[520px] drop-shadow-[0_0_45px_rgba(255,166,0,0.18)]" src={FoundingStory} />
+              <img className="w-full max-w-[520px] drop-shadow-[0_0_45px_rgba(255,166,0,0.18)]" src={FoundingStory} alt="Atlas learning platform"/>
             </div>
           </div>
 

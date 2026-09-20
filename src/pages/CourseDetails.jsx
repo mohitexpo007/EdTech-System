@@ -47,7 +47,7 @@ const CourseDetails=()=>{
   const courseDetails=courseData?.data?.[0]?.courseDetails || courseData?.data?.courseDetails || courseData?.data?.[0];
 
   useEffect(()=>{
-    const count=GetAvgRating(courseDetails?.ratingAndReviews || courseDetails?.ratingAndReview) || 0;
+    const count=GetAvgRating(courseDetails?.ratingAndReview) || 0;
     setAvgReviewCount(count);
   },[courseData])
 
@@ -59,7 +59,7 @@ const CourseDetails=()=>{
       lectures+=sec.subSection?.length || 0
     })
     setTotalNoOfLectures(lectures);
-  },[courseData])
+  },[courseData,courseDetails?.courseContent])
 
 
   //ek array me store kra hai konse section open hai konse close so collapse all sbko band krde
@@ -163,7 +163,7 @@ const CourseDetails=()=>{
 
                 <RatingStars Review_Count={avgReviewCount} Star_Size={20} />
 
-                <span>{`(${(courseDetails?.ratingAndReviews || courseDetails?.ratingAndReview || []).length} reviews)`}</span>
+                <span>{`(${(courseDetails?.ratingAndReview || []).length} reviews)`}</span>
 
                 <span>{`${(courseDetails?.studentsEnroled || courseDetails?.studentsEnrolled || []).length} students enrolled`}</span>
               </div>

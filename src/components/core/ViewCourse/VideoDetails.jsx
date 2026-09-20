@@ -24,7 +24,7 @@ const VideoDetails = () => {
   const [previewSource, setPreviewSource] = useState("")
   const [videoEnded, setVideoEnded] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [duration,setDuration]=useState(0)
+  const [duration]=useState(0)
 
   useEffect(() => {
     ;(async () => {
