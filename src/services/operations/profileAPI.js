@@ -1,10 +1,8 @@
 import toast from "react-hot-toast";
 import { apiConnector } from "../apiconnector";
 import { profileEndpoints } from "../apis"
-import { logout } from "./authAPI"
-import { setLoading, setUser } from "../../slices/profileSlice"
 
-const { GET_USER_DETAILS_API, GET_USER_ENROLLED_COURSES_API } = profileEndpoints
+const {GET_USER_ENROLLED_COURSES_API } = profileEndpoints
 
 
 export async function getUserEnrolledCourses(token) {

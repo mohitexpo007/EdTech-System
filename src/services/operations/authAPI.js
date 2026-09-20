@@ -137,7 +137,7 @@ export function getPasswordResetToken(email, setEmailSent){
     try{
       const response=await apiConnector("POST",RESETPASSTOKEN_API,{email});
 
-      console.log("RESET PASSWORD TOKEN RESPONSE....". response);
+      console.log("RESET PASSWORD TOKEN RESPONSE....", response);
 
       //error message if backend function fails
       if(!response.data.success){

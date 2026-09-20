@@ -6,7 +6,6 @@ import CourseReviewModal from "../components/core/ViewCourse/CourseReviewModal"
 import VideoDetailsSidebar from "../components/core/ViewCourse/VideoDetailsSidebar"
 import { getFullDetailsOfCourse } from "../services/operations/courseDetailsAPI"
 import {
-  setCompletedLectures,
   setCourseSectionData,
   setEntireCourseData,
   setTotalNoOfLectures,
