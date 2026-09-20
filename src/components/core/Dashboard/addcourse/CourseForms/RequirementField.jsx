@@ -21,7 +21,7 @@ const RequirementField=({name,label,register,errors,setValue,getValue})=>{
 
   useEffect(()=>{
     setValue(name,requirementList);
-  },[requirementList])
+  },[name, setValue])
 
   const handleRemoveRequirement=(index)=>{
     const updatedRequirementList=[...requirementList];

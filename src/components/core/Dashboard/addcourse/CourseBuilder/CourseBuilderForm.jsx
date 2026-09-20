@@ -1,9 +1,7 @@
 import { useForm } from "react-hook-form";
 import IconBtn from "../../../../common/IconBtn";
 import { useState } from "react";
-import {MdAddCircleOutline} from "react-icons/md"
 import { useSelector } from "react-redux";
-import {BiRightArrow} from "react-icons/bi"
 import { useDispatch } from "react-redux";
 import { setCourse, setEditCourse, setStep } from "../../../../../slices/courseSlice";
 import toast from "react-hot-toast";
@@ -16,7 +14,6 @@ const CourseBuilderForm=()=>{
   const{register,handleSubmit,setValue,formState:{errors}}=useForm();
   const[editSectionName,setEditSectionName]=useState(null);
   const{course}=useSelector((state)=>state.course);
-  const[loading,setLoading]=useState(false);
   const{token}=useSelector((state)=>state.auth);
 
   const dispatch=useDispatch();

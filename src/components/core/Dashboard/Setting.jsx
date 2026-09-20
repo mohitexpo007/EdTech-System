@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CountryCode from "../../../data/countrycode.json"
 
-import IconBtn from "../../common/IconBtn";
 import { changePassword, updateDisplayPicture, updateProfile } from "../../../services/operations/SettingsApi";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 
