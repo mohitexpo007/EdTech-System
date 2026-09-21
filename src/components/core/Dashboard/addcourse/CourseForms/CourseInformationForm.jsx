@@ -22,11 +22,13 @@ const CourseInformationForm=()=>{
     formState:{errors}
   }=useForm()
   
+  
   const dispatch=useDispatch();
   const{course,editCourse}=useSelector((state)=>state.course)
   const [loading,setLoading]=useState(false)
   const [courseCategories,setCourseCategories]=useState([]);
   const{token}=useSelector((state)=>state.auth)
+  
 
   useEffect(()=>{
     const getCategories=async()=>{
@@ -38,7 +40,7 @@ const CourseInformationForm=()=>{
       setLoading(false);
     }
 
-    if(editCourse){
+    if(editCourse && course){
       setValue("courseTitle",course.courseName);
       setValue("courseShortDesc",course.courseDescription);
       setValue("coursePrice",course.price);
@@ -51,14 +53,14 @@ const CourseInformationForm=()=>{
 
     getCategories();
   },[
-    course.category,
-    course.courseDescription,
-    course.courseName,
-    course.instructions,
-    course.price,
-    course.tag,
-    course.thumbnail,
-    course.whatYouWillLearn,
+    course?.category,
+    course?.courseDescription,
+    course?.courseName,
+    course?.instructions,
+    course?.price,
+    course?.tag,
+    course?.thumbnail,
+    course?.whatYouWillLearn,
     editCourse,
     setValue,
   ]);
