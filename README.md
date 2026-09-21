@@ -19,8 +19,13 @@ A full-stack learning management platform built with the MERN stack, designed to
 
 </div>
 
-Frontend-https://atlas-livid-iota-48.vercel.app/
-Backend-https://atlas-backend-8qo4.onrender.com/
+# Frontend-https://atlas-livid-iota-48.vercel.app/
+# Backend-https://atlas-backend-8qo4.onrender.com/
+
+## Use below IDs for quick checkout at features or create your own ID
+### Use Instructor ID - arceus930076@gmail.com password-1234
+### Use Student ID- mohit07gupta007@gmail.com password-1234
+
 
 ---
 
